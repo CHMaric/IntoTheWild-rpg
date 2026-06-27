@@ -22,6 +22,13 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    //Lombok
+    compileOnly("org.projectlombok:lombok:1.18.46")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
+    //Lombok for test
+    testCompileOnly("org.projectlombok:lombok:1.18.46")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.46")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
