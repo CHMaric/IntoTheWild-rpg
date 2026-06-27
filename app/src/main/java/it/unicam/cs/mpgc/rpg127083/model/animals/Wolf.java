@@ -1,8 +1,29 @@
 package it.unicam.cs.mpgc.rpg127083.model.animals;
 
-import java.util.HashSet;
-import java.util.List;
+import it.unicam.cs.mpgc.rpg127083.model.Nest;
+import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
+import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
+
 
 public class Wolf extends Animal{
-    List<Wolf> pups;
+
+
+    public Wolf(long id, AnimalType type, Habitat habitat, double life, double energy, double stamina, Nest nest, Challenge currentChallenge) {
+        super(id, type, habitat, life, energy, stamina, nest, currentChallenge);
+    }
+
+    @Override
+    public String getFirstChallengeDescription() {
+        return "";
+    }
+
+    @Override
+    public String getSecondChallengeDescription() {
+        return "";
+    }
+
+    @Override
+    public String getThirdChallengeDescription() {
+        return "";
+    }
 }
