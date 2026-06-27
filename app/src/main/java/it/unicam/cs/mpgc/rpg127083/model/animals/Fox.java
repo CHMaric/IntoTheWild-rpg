@@ -24,4 +24,14 @@ public class Fox extends Animal{
     public String getThirdChallengeDescription() {
         return "Hai avvistato dei cacciatori.";
     }
+
+    @Override
+    public String handleActChoice() {
+        return "";
+    }
+
+    @Override
+    public String handleWaitChoice() {
+        return "";
+    }
 }

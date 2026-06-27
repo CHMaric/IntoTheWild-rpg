@@ -25,5 +25,7 @@ public abstract class Animal {
     public abstract String getSecondChallengeDescription();
     public abstract String getThirdChallengeDescription();
 
+    public abstract String handleActChoice();
+    public abstract String handleWaitChoice();
 
 }

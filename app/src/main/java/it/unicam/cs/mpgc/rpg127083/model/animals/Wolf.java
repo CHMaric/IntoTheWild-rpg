@@ -26,4 +26,14 @@ public class Wolf extends Animal{
     public String getThirdChallengeDescription() {
         return "Un branco rivale reclama il nostro territorio.";
     }
+
+    @Override
+    public String handleActChoice() {
+        return "";
+    }
+
+    @Override
+    public String handleWaitChoice() {
+        return "";
+    }
 }

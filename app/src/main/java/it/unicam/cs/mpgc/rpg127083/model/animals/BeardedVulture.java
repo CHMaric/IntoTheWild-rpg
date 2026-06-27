@@ -26,4 +26,14 @@ public class BeardedVulture extends Animal{
     public String getThirdChallengeDescription() {
         return "Hai trovato una carcassa lasciata indietro da cacciatori umani.";
     }
+
+    @Override
+    public String handleActChoice() {
+        return "";
+    }
+
+    @Override
+    public String handleWaitChoice() {
+        return "";
+    }
 }
