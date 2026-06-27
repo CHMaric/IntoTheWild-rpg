@@ -14,16 +14,16 @@ public class BeardedVulture extends Animal{
 
     @Override
     public String getFirstChallengeDescription() {
-        return "";
+        return "Le uova sono sensibili al freddo.";
     }
 
     @Override
     public String getSecondChallengeDescription() {
-        return "";
+        return "Un predatore ha abbandonato una carcassa.";
     }
 
     @Override
     public String getThirdChallengeDescription() {
-        return "";
+        return "Hai trovato una carcassa lasciata indietro da cacciatori umani.";
     }
 }

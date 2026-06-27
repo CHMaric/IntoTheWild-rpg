@@ -14,16 +14,16 @@ public class Wolf extends Animal{
 
     @Override
     public String getFirstChallengeDescription() {
-        return "";
+        return "Il braco ha bisogno di cibo per superare l'inverno.";
     }
 
     @Override
     public String getSecondChallengeDescription() {
-        return "";
+        return "Il branco ha trovato tracce di attività umana.";
     }
 
     @Override
     public String getThirdChallengeDescription() {
-        return "";
+        return "Un branco rivale reclama il nostro territorio.";
     }
 }

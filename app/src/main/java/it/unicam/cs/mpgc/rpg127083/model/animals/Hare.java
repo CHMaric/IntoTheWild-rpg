@@ -12,16 +12,16 @@ public class Hare extends Animal{
 
     @Override
     public String getFirstChallengeDescription() {
-        return "";
+        return "Lascia il nido in cerca di cibo.";
     }
 
     @Override
     public String getSecondChallengeDescription() {
-        return "";
+        return "Un predatore è vicino.";
     }
 
     @Override
     public String getThirdChallengeDescription() {
-        return "";
+        return "Il nido è stato scoperto da un predatore.";
     }
 }

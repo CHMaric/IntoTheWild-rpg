@@ -12,16 +12,16 @@ public class Fox extends Animal{
 
     @Override
     public String getFirstChallengeDescription() {
-        return "";
+        return "Cerca del cibo per i cuccioli.";
     }
 
     @Override
     public String getSecondChallengeDescription() {
-        return "";
+        return "Un orso sta passando vicino al tuo territorio.";
     }
 
     @Override
     public String getThirdChallengeDescription() {
-        return "";
+        return "Hai avvistato dei cacciatori.";
     }
 }
