@@ -7,11 +7,11 @@ import java.util.Set;
 @Getter
 public abstract class Habitat {
     private long id;
-    private String name;
+    private String label;
 
-    public Habitat(long id, String name) {
+    public Habitat(long id, String label) {
         this.id = id;
-        this.name = name;
+        this.label = label;
     }
 
     public abstract Set<AnimalType> getAvailableAnimalTypes();

@@ -1,0 +1,56 @@
+[
+  {
+    "stage": 1,
+    "description": "Lascia il nido in cerca di cibo.",
+    "actChoice": {
+      "description": "Decidi di lasciare il nido in cerca di cibo.",
+      "outcomeDescription": "Trovi del cibo e recuperi energie.",
+      "lifeEffect": 0,
+      "energyEffect": 15,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere nel nido.",
+      "outcomeDescription": "Proteggi il nido ma la mancanza di cibo indebolisce la prole.",
+      "lifeEffect": -5,
+      "energyEffect": -10,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 2,
+    "description": "Un predatore è vicino.",
+    "actChoice": {
+      "description": "Decidi di scappare attirando il predatore lontano dalla prole.",
+      "outcomeDescription": "Salvi la prole ma ti esponi al pericolo.",
+      "lifeEffect": -10,
+      "energyEffect": -15,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di provare a mimetizzarti. ",
+      "outcomeDescription": "Non sei stato scoperto, ma hai perso la tua prole.",
+      "lifeEffect": -15,
+      "energyEffect": -5,
+      "staminaEffect": -5
+    }
+  },
+  {
+    "stage": 3,
+    "description": "Il nido è stato scoperto da un predatore.",
+    "actChoice": {
+      "description": "Decidi di abbandonare il nido lasciando la tua prole al proprio destino.",
+      "outcomeDescription": "Sopravvivi, ma perdi la prole.",
+      "lifeEffect": 0,
+      "energyEffect": -10,
+      "staminaEffect": 0
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere nel nido con la tua prole",
+      "outcomeDescription": "Proteggi la prole mettendo a rischio la tua vita.",
+      "lifeEffect": -50,
+      "energyEffect": -20,
+      "staminaEffect": -10
+    }
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "stage": 1,
+    "description": "Le uova sono sensibili al freddo.",
+    "actChoice": {
+      "description": "Decidi di proteggere le uova dal freddo.",
+      "outcomeDescription": "Riesci a proteggere le uova, ma consumi molte energie.",
+      "lifeEffect": 0,
+      "energyEffect": -10,
+      "staminaEffect": -5
+    },
+    "waitChoice": {
+      "description": "Decidi di aspettare che il freddo passi.",
+      "outcomeDescription": "Il freddo mette a rischio le uova e perdi energie nel tentativo di resistere.",
+      "lifeEffect": -5,
+      "energyEffect": -5,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 2,
+    "description": "Un predatore ha abbandonato una carcassa.",
+    "actChoice": {
+      "description": "Decidi di mangiare la carcassa per nutrirti.",
+      "outcomeDescription": "Recuperi energie nutrendoti della carcassa.",
+      "lifeEffect": 0,
+      "energyEffect": 20,
+      "staminaEffect": 10
+    },
+    "waitChoice": {
+      "description": "Decidi di aspettare per paura che il predatore torni.",
+      "outcomeDescription": "Eviti il pericolo ma perdi una preziosa occasione per nutrirti.",
+      "lifeEffect": 0,
+      "energyEffect": -10,
+      "staminaEffect": -5
+    }
+  },
+  {
+    "stage": 3,
+    "description": "Hai trovato una carcassa lasciata indietro da cacciatori umani.",
+    "actChoice": {
+      "description": "Decidi di mangiare la carcassa abbattuta dagli umani.",
+      "outcomeDescription": "Ti sei intossicato con il piombo.",
+      "lifeEffect": -30,
+      "energyEffect": 25,
+      "staminaEffect": 5
+    },
+    "waitChoice": {
+      "description": "Decidi di non mangiare dalla carcassa sospetta.",
+      "outcomeDescription": "Eviti un possibile pericolo, ma rimani affamato.",
+      "lifeEffect": 0,
+      "energyEffect": -15,
+      "staminaEffect": -5
+    }
+  }
+]
