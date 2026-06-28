@@ -20,7 +20,7 @@ public class JsonChallengeLoader implements ChallengeLoader{
 
     @Override
     public List<Challenge> loadChallengesForAnimal(Habitat habitat, String animalType) {
-        String path = "/" + habitat.getLabel() + "_" + animalType.toUpperCase() + ".json";
+        String path = "/challenges/" + habitat.getLabel() + "_" + animalType.toUpperCase() + ".json";
         try (InputStream input = getClass().getResourceAsStream(path)) {
             if(input == null)
                 throw new IllegalArgumentException("File not found");
