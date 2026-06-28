@@ -1,0 +1,56 @@
+[
+  {
+    "stage": 1,
+    "description": "Il branco ha bisogno di cibo per superare l'inverno.",
+    "actChoice": {
+      "description": "Decidi di andare a caccia.",
+      "outcomeDescription": "Catturi un cervo ma vieni ferito",
+      "lifeEffect": -10,
+      "energyEffect": 25,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di aspettare.",
+      "outcomeDescription": "Eviti rischi ma la fame aumenta.",
+      "lifeEffect": -5,
+      "energyEffect": -15,
+      "staminaEffect": -10
+    }
+  },
+  {
+    "stage": 2,
+    "description": "Il branco ha trovato tracce di attività umana.",
+    "actChoice": {
+      "description": "Decidi di osservare gli umani.",
+      "outcomeDescription": "Riesci a spaventarli. Difendi il territorio senza subire ferite.",
+      "lifeEffect": 0,
+      "energyEffect": 0,
+      "staminaEffect": -5
+    },
+    "waitChoice": {
+      "description": "Decidi di nasconderti.",
+      "outcomeDescription": "Eviti gli umani ma perdi energie.",
+      "lifeEffect": 0,
+      "energyEffect": -20,
+      "staminaEffect": -10
+    }
+  },
+  {
+    "stage": 3,
+    "description": "Un branco rivale reclama il nostro territorio.",
+    "actChoice": {
+      "description": "Decidi di lottare contro il branco rivale.",
+      "outcomeDescription": "Difendi il territorio ma subisci ferite.",
+      "lifeEffect": -20,
+      "energyEffect": -10,
+      "staminaEffect": -15
+    },
+    "waitChoice": {
+      "description": "La coppia alfa è stata sconfitta. Decidi di metterti in salvo.",
+      "outcomeDescription": "Sopravvivi ma perdi il territorio.",
+      "lifeEffect": 0,
+      "energyEffect": -10,
+      "staminaEffect": -5
+    }
+  }
+]

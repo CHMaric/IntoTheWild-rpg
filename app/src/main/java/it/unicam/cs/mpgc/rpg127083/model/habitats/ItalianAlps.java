@@ -6,7 +6,7 @@ import java.util.Set;
 public class ItalianAlps extends Habitat {
 
     public ItalianAlps() {
-        super(1, "Alpi Italiane");
+        super(1, "ITALIAN_ALPS");
     }
 
     @Override

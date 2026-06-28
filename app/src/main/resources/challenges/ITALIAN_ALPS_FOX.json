@@ -1,0 +1,56 @@
+[
+  {
+    "stage": 1,
+    "description": "Cerca del cibo per i cuccioli.",
+    "actChoice": {
+      "description": "Decidi di lasciare il nido in cerca di cibo.",
+      "outcomeDescription": "Trovi del cibo per i cuccioli, ma consumi energie.",
+      "lifeEffect": 10,
+      "energyEffect": -10,
+      "staminaEffect": -5
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere nel nido. I tuoi cuccioli sono sempre più affamati.",
+      "outcomeDescription": "Proteggi il nido ma la fame aumenta.",
+      "lifeEffect": -5,
+      "energyEffect": -10,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 2,
+    "description": "Un orso sta passando vicino al tuo territorio.",
+    "actChoice": {
+      "description": "Decidi di lasciare il nido e perlustrare il territorio.",
+      "outcomeDescription": "Allontani il pericolo, ma rischi di esporti.",
+      "lifeEffect": -5,
+      "energyEffect": -10,
+      "staminaEffect": -5
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere nel nido per evitare di incontrare l'orso.",
+      "outcomeDescription": "Eviti lo scontro ma rimani bloccato.",
+      "lifeEffect": 0,
+      "energyEffect": -5,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 3,
+    "description": "Hai avvistato dei cacciatori.",
+    "actChoice": {
+      "description": "Decidi di lasciare il nido e cercare un posto sicuro per i tuoi cuccioli.",
+      "outcomeDescription": "Metti in salvo i cuccioli ma consumi molte energie.",
+      "lifeEffect": 0,
+      "energyEffect": -20,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Ignori la presenza di umani. Uno dei tuoi cuccioli viene ucciso dai cacciatori.",
+      "outcomeDescription": "Perdi parte della prole e subisci un forte trauma.",
+      "lifeEffect": -20,
+      "energyEffect": -10,
+      "staminaEffect": -10
+    }
+  }
+]
