@@ -20,9 +20,4 @@ public abstract class Animal {
     private Nest nest;
     private Challenge currentChallenge;
 
-    public abstract String getChallengeDescription(int stage);
-
-    public abstract String handleActChoice(int stage);
-    public abstract String handleWaitChoice(int stage);
-
 }
