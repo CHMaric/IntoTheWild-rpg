@@ -1,9 +1,7 @@
 package it.unicam.cs.mpgc.rpg127083.model.habitats;
 
 import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import lombok.Getter;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -17,7 +15,5 @@ public abstract class Habitat {
     }
 
     public abstract Set<AnimalType> getAvailableAnimalTypes();
-
-    public abstract List<Challenge> getChallenges();
 
 }
