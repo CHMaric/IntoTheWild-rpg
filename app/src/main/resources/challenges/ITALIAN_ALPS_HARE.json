@@ -29,7 +29,7 @@
     },
     "waitChoice": {
       "description": "Decidi di provare a mimetizzarti. ",
-      "outcomeDescription": "Non sei stato scoperto, ma hai perso la tua prole.",
+      "outcomeDescription": "Non sei stato scoperto, ma hai perso parte della tua prole.",
       "lifeEffect": -15,
       "energyEffect": -5,
       "staminaEffect": -5
@@ -48,7 +48,7 @@
     "waitChoice": {
       "description": "Decidi di rimanere nel nido con la tua prole",
       "outcomeDescription": "Proteggi la prole mettendo a rischio la tua vita.",
-      "lifeEffect": -50,
+      "lifeEffect": -70,
       "energyEffect": -20,
       "staminaEffect": -10
     }
