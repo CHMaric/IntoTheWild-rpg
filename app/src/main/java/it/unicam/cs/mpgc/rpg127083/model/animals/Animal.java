@@ -16,6 +16,4 @@ public abstract class Animal {
     private double life;
     private double energy;
     private double stamina;
-    private Challenge currentChallenge;
-
 }

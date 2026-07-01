@@ -7,8 +7,9 @@ import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
 public class BeardedVulture extends Animal {
 
 
-    public BeardedVulture(long id, AnimalType type, Habitat habitat, double life, double energy, double stamina, Challenge currentChallenge) {
-        super(id, type, habitat, life, energy, stamina, currentChallenge);
+    public BeardedVulture(long id, AnimalType type, Habitat habitat, double life,
+                          double energy, double stamina) {
+        super(id, type, habitat, life, energy, stamina);
     }
 
 }

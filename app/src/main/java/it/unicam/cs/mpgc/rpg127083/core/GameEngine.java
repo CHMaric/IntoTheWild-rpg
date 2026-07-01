@@ -4,30 +4,32 @@ import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
 import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatFactory;
-import it.unicam.cs.mpgc.rpg127083.persistence.ChallengeLoader;
-import it.unicam.cs.mpgc.rpg127083.persistence.JsonChallengeLoader;
-import it.unicam.cs.mpgc.rpg127083.persistence.JsonSaveManager;
-import it.unicam.cs.mpgc.rpg127083.persistence.SaveManager;
+import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatRegistry;
+import it.unicam.cs.mpgc.rpg127083.persistence.*;
 
+import java.io.IOException;
 import java.util.List;
 
 public class GameEngine {
 
     private final ChallengeLoader challengeLoader;
     private final SaveManager saveManager;
-    private final HabitatFactory habitatFactory;
+    private HabitatFactory habitatFactory;
+    private final HabitatRegistry habitatRegistry;
     private Animal player;
     private List<Challenge> challenges;
     private int currentStage;
 
-    public GameEngine(HabitatFactory habitatFactory){
+    public GameEngine(HabitatFactory habitatFactory, ChallengeLoader challengeLoader,
+                      SaveManager saveManager, HabitatRegistry habitatRegistry){
         this.habitatFactory = habitatFactory;
-        this.challengeLoader = new JsonChallengeLoader();
-        this.saveManager = new JsonSaveManager();
+        this.challengeLoader = challengeLoader;
+        this.saveManager = saveManager;
+        this.habitatRegistry = habitatRegistry;
     }
 
     public void startGame(AnimalType animalType){
-        this.currentStage = 1;
+        this.currentStage = 0;
         this.player = habitatFactory.createAnimal(animalType);
         this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), animalType.name());
         if(challenges.isEmpty())
@@ -61,5 +63,22 @@ public class GameEngine {
         if(player.getLife() <= 0) return GameState.GAME_OVER;
         if(currentStage >= challenges.size()) return GameState.VICTORY;
         return GameState.RUNNING;
+    }
+
+    public void saveGame(String filePath) throws IOException {
+        if(player == null)
+            throw new IllegalArgumentException("Player can't be null");
+        SaveData toSave = new SaveData(this.player, this.currentStage);
+        this.saveManager.save(toSave,filePath);
+    }
+
+    public void loadGame(String filePath) throws IOException {
+        SaveData data = this.saveManager.load(filePath);
+        this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
+        AnimalType type = AnimalType.valueOf(data.getAnimalType());
+        this.player = habitatFactory.createAnimal(type);
+        data.restorePlayerState(this.player);
+        this.currentStage = data.getCurrentStage();
+        this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
     }
 }

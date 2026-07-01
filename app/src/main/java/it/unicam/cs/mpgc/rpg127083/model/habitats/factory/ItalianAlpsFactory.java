@@ -16,10 +16,10 @@ public class ItalianAlpsFactory implements HabitatFactory{
         Habitat h = this.createHabitat();
 
         return switch(animalType) {
-            case FOX -> new Fox(0,AnimalType.FOX,h,85,80,75,null);
-            case WOLF -> new Wolf(1,AnimalType.WOLF,h,100,100,100,null);
-            case HARE -> new Hare(2, AnimalType.HARE, h, 50, 90, 70, null);
-            case BEARDED_VULTURE -> new BeardedVulture(3, AnimalType.BEARDED_VULTURE, h, 90, 70, 80, null);
+            case FOX -> new Fox(0,AnimalType.FOX,h,85,80,75);
+            case WOLF -> new Wolf(1,AnimalType.WOLF,h,100,100,100);
+            case HARE -> new Hare(2, AnimalType.HARE, h, 50, 90, 70);
+            case BEARDED_VULTURE -> new BeardedVulture(3, AnimalType.BEARDED_VULTURE, h, 90, 70, 80);
             default -> throw new IllegalArgumentException("Animal not present in this habitat");
         };
     }

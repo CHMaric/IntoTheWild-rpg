@@ -12,7 +12,7 @@ public class JsonSaveManager implements SaveManager {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     @Override
     public void save(SaveData data, String filePath) throws IOException {
-        if(data == null || filePath == null)
+        if(data == null || filePath == null || filePath.isBlank())
             throw new IllegalArgumentException("Data and file path cannot be null");
         try(FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(data, writer);

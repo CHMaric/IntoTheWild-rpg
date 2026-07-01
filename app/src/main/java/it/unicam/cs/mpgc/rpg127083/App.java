@@ -3,12 +3,20 @@
  */
 package it.unicam.cs.mpgc.rpg127083;
 
+import it.unicam.cs.mpgc.rpg127083.core.GameEngine;
+import it.unicam.cs.mpgc.rpg127083.core.GameState;
+import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
+import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
+import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatFactory;
+import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatRegistry;
+import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.ItalianAlpsFactory;
+import it.unicam.cs.mpgc.rpg127083.persistence.JsonChallengeLoader;
+import it.unicam.cs.mpgc.rpg127083.persistence.JsonSaveManager;
+
+import java.io.IOException;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
     }
 }

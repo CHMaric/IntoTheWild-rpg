@@ -5,8 +5,9 @@ import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
 
 public class Fox extends Animal{
-    public Fox(long id, AnimalType type, Habitat habitat, double life, double energy, double stamina, Challenge currentChallenge) {
-        super(id, type, habitat, life, energy, stamina, currentChallenge);
+    public Fox(long id, AnimalType type, Habitat habitat, double life,
+               double energy, double stamina) {
+        super(id, type, habitat, life, energy, stamina);
     }
 
 }
