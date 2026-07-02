@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
+import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +12,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
 
-public class JsonChallengeLoader implements ChallengeLoader{
+public class JsonChallengeLoader implements ChallengeLoader {
     private final Gson gson;
 
     public JsonChallengeLoader() {
