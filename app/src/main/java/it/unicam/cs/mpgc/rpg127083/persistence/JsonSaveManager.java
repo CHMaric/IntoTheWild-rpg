@@ -2,6 +2,8 @@ package it.unicam.cs.mpgc.rpg127083.persistence;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.SaveManager;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;

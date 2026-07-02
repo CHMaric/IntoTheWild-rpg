@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg127083.persistence;
+package it.unicam.cs.mpgc.rpg127083.persistence.interfaces;
 
 import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
