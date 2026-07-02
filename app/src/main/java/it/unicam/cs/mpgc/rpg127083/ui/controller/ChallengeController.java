@@ -64,7 +64,7 @@ public class ChallengeController {
         Optional<ButtonType> choice = alert.showAndWait();
         if(choice.isPresent() && choice.get() == nestButton){
             NestController nestController = new NestController(gameEngine, sceneManager);
-            sceneManager.switchScene("/resources/view/NestView.fxml", nestController);
+            sceneManager.switchScene("/view/NestView.fxml", nestController);
         }
         else
             updateChallengeUI();
@@ -76,7 +76,7 @@ public class ChallengeController {
         alert.setContentText("Sei sopravvissuto alle difficoltà della vita nella natura.");
         alert.showAndWait();
         StartMenuController startMenu = new StartMenuController(gameEngine, sceneManager);
-        sceneManager.switchScene("/resources/view/StartMenuView.fxml", startMenu);
+        sceneManager.switchScene("/view/StartMenuView.fxml", startMenu);
     }
 
 

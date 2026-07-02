@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface GamePersistenceService {
-    void saveCurrentGame(SaveData saveData, String slotName) throws IOException;
-    SaveData loadLastGame(String slotName) throws IOException;
+    void saveGame(SaveData saveData, String slotName) throws IOException;
+    SaveData loadGame(String slotName) throws IOException;
     List<String> getAvailableSlots();
 }

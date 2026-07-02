@@ -8,7 +8,6 @@ import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.persistence.*;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService;
-import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.SaveManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
 public class GameEngine {
 
     private final ChallengeLoader challengeLoader;
-    private final SaveManager saveManager;
     private final GamePersistenceService persistenceService;
     private HabitatFactory habitatFactory;
     private final HabitatRegistry habitatRegistry;
@@ -25,10 +23,9 @@ public class GameEngine {
     private int currentStage;
 
     public GameEngine(HabitatFactory habitatFactory, ChallengeLoader challengeLoader,
-                      SaveManager saveManager, GamePersistenceService persistenceService, HabitatRegistry habitatRegistry){
+                      GamePersistenceService persistenceService, HabitatRegistry habitatRegistry){
         this.habitatFactory = habitatFactory;
         this.challengeLoader = challengeLoader;
-        this.saveManager = saveManager;
         this.persistenceService = persistenceService;
         this.habitatRegistry = habitatRegistry;
     }
@@ -84,13 +81,13 @@ public class GameEngine {
     public void saveGame(String slotName) {
         try {
             SaveData data = new SaveData(this.player, this.currentStage);
-            persistenceService.saveCurrentGame(data, slotName);
+            persistenceService.saveGame(data, slotName);
         } catch (IOException e) {
             throw new IllegalStateException("Can't save game", e);
         }
     }
 
-    public boolean loadGame(String filePath) {
+    public boolean loadGame(String slotName) {
         try {
             SaveData data = this.persistenceService.loadGame(slotName);
 
@@ -104,5 +101,9 @@ public class GameEngine {
         } catch (IOException e) {
             return false;
         }
+    }
+
+    public List<String> getAvailableSaveSlots() {
+        return persistenceService.getAvailableSlots();
     }
 }

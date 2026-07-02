@@ -21,13 +21,13 @@ public class JsonFilePersistenceService implements GamePersistenceService {
     }
 
     @Override
-    public void saveCurrentGame(SaveData saveData, String slotName) throws IOException {
+    public void saveGame(SaveData saveData, String slotName) throws IOException {
         String filePath = saveDirectory + slotName + ".json";
         saveManager.save(saveData, filePath);
     }
 
     @Override
-    public SaveData loadLastGame(String slotName) throws IOException {
+    public SaveData loadGame(String slotName) throws IOException {
         String filePath = saveDirectory + slotName +".json";
         return saveManager.load(filePath);
     }

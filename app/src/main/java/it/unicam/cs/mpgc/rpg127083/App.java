@@ -18,20 +18,25 @@ import javafx.stage.Stage;
 public class App extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
-        SaveManager saveManager = new JsonSaveManager();
-        ChallengeLoader challengeLoader = new JsonChallengeLoader();
-        GamePersistenceService persistenceService = new JsonFilePersistenceService(saveManager);
-        HabitatRegistry habitatRegistry = new HabitatRegistry();
-        habitatRegistry.registerFactory("ITALIAN_ALPS", new ItalianAlpsFactory());
+        try {
+            ChallengeLoader challengeLoader = new JsonChallengeLoader();
+            SaveManager saveManager = new JsonSaveManager();
+            GamePersistenceService persistenceService = new JsonFilePersistenceService(saveManager);
+            HabitatRegistry habitatRegistry = new HabitatRegistry();
+            habitatRegistry.registerFactory("ITALIAN_ALPS", new ItalianAlpsFactory());
 
-        GameEngine gameEngine =
-                new GameEngine(null, challengeLoader, saveManager,
-                        persistenceService, habitatRegistry);
+            GameEngine gameEngine =
+                    new GameEngine(null, challengeLoader,
+                            persistenceService, habitatRegistry);
 
-        SceneManager sceneManager = new SceneManager(primaryStage);
-        StartMenuController startMenuController = new StartMenuController(gameEngine, sceneManager);
-        primaryStage.setTitle("Into Te Wild");
-        sceneManager.switchScene("/resources/view/StartMenuView.fxml", startMenuController);
+            SceneManager sceneManager = new SceneManager(primaryStage);
+            StartMenuController startMenuController = new StartMenuController(gameEngine, sceneManager);
+            primaryStage.setTitle("Into Te Wild");
+            sceneManager.switchScene("/view/StartMenuView.fxml", startMenuController);
+        } catch ( Throwable t){
+            System.err.println("=== CRASH RILEVATO ALL'AVVIO DI JAVAFX ===");
+            t.printStackTrace();
+        }
     }
 
     public static void main(String[] args){

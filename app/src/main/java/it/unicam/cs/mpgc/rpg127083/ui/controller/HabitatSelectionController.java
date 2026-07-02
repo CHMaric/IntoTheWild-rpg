@@ -25,6 +25,6 @@ public class HabitatSelectionController {
 
     private void selectHabitat(String habitat) {
         AnimalSelectionController animalController = new AnimalSelectionController(gameEngine, sceneManager, habitat);
-        sceneManager.switchScene("/resources/view/AnimalSelectionView.fxml", animalController);
+        sceneManager.switchScene("/view/AnimalSelectionView.fxml", animalController);
     }
 }
