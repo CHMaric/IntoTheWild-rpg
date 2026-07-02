@@ -1,6 +1,5 @@
 package it.unicam.cs.mpgc.rpg127083.model.animals;
 
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,5 @@
 package it.unicam.cs.mpgc.rpg127083.model.habitats.factory;
 
-import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
-
 import java.util.HashMap;
 import java.util.Map;
 

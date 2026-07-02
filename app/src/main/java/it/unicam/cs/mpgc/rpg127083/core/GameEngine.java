@@ -27,8 +27,13 @@ public class GameEngine {
         this.saveManager = saveManager;
         this.habitatRegistry = habitatRegistry;
     }
+    public void initializeHabitat(String habitat){
+        this.habitatFactory = this.habitatRegistry.getFactory(habitat);
+    }
 
     public void startGame(AnimalType animalType){
+        if(this.habitatFactory == null)
+            throw new IllegalStateException("Game can't start if a Habitat has not been chosen");
         this.currentStage = 0;
         this.player = habitatFactory.createAnimal(animalType);
         this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), animalType.name());
@@ -42,20 +47,26 @@ public class GameEngine {
         return challenges.get(currentStage);
     }
 
-    public void executeActChoice(){
+    public String executeActChoice(){
         Challenge current = getCurrentChallenge();
         if(current != null){
             current.executeAct(player);
+            String outcome = current.getActOutcome();
             currentStage++;
+            return outcome;
         }
+        return "";
     }
 
-    public void executeWaitChoice(){
+    public String executeWaitChoice(){
         Challenge current = getCurrentChallenge();
         if(current != null){
             current.executeWait(player);
+            String outcome = current.getWaitOutcome();
             currentStage++;
+            return outcome;
         }
+        return "";
     }
 
     public GameState checkGameState(){
