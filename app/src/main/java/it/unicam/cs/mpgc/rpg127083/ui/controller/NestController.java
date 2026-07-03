@@ -90,9 +90,14 @@ public class NestController {
             showAlert(Alert.AlertType.ERROR, "Nome slot non valido.");
             return;}
         try{
-            gameEngine.loadGame(slotName);
+            boolean success = gameEngine.loadGame(slotName);
+            if(success){
             showAlert(Alert.AlertType.INFORMATION, "Partita caricata correttamente");
             showStats();
+            }
+            else
+                showAlert(Alert.AlertType.ERROR, "Impossibile trovare il file di salvataggio: " + slotName);
+
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Errore nel caricamento");
         }

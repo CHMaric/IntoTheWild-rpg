@@ -106,11 +106,11 @@ public class ChallengeController {
     private void showChoiceOutcome(ChoiceOutcome outcome){
         updateStats();
         if(gameEngine.checkGameState()== GameState.GAME_OVER){
-            showGameOver();
+            showGameOver(outcome.description());
             return;
         }
         if(gameEngine.checkGameState()== GameState.VICTORY){
-            showWin();
+            showWin(outcome.description());
             return;
         }
         outcomeLabel.setText(outcome.description());
@@ -124,9 +124,9 @@ public class ChallengeController {
         waitButton.setDisable(true);
     }
 
-    private void showGameOver() {
+    private void showGameOver(String s){
         challengeDescriptionLabel.setText("SEI MORTO");
-        outcomeLabel.setText("La natura ha fatto il suo corso.");
+        outcomeLabel.setText(s + "\nLa natura ha fatto il suo corso.");
         freezeButtons();
     }
 
@@ -143,6 +143,11 @@ public class ChallengeController {
     private void showWin(){
         challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
         outcomeLabel.setText("La natura non ti ha sopraffatto");
+        freezeButtons();
+    }
+    private void showWin(String s){
+        challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
+        outcomeLabel.setText(s + "\nLa natura non ti ha sopraffatto");
         freezeButtons();
     }
 
