@@ -6,6 +6,9 @@ import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.util.List;
+import java.util.Optional;
+
 public class NestController {
     private final GameEngine gameEngine;
     private final SceneManager sceneManager;
@@ -78,29 +81,28 @@ public class NestController {
     }
 
     private void handleLoad(){
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Carica Partita");
-        dialog.setHeaderText("Inserisci nome slot:");
-        dialog.setContentText("Nome:");
-        dialog.showAndWait().ifPresent(this::loadGame);
-    }
-
-    private void loadGame(String slotName) {
-        if(slotName.isBlank()){
-            showAlert(Alert.AlertType.ERROR, "Nome slot non valido.");
-            return;}
-        try{
-            boolean success = gameEngine.loadGame(slotName);
-            if(success){
-            showAlert(Alert.AlertType.INFORMATION, "Partita caricata correttamente");
-            showStats();
-            }
-            else
-                showAlert(Alert.AlertType.ERROR, "Impossibile trovare il file di salvataggio: " + slotName);
-
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Errore nel caricamento");
+        List<String> availableSaves = gameEngine.getPersistenceService().getAvailableSlots();
+        if (availableSaves.isEmpty()) {
+            showAlert(Alert.AlertType.INFORMATION, "Non ci sono partite salvate al momento.");
+            return;
         }
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(availableSaves.get(0), availableSaves);
+        dialog.setTitle("Carica Partita");
+        dialog.setHeaderText("Seleziona lo slot:");
+        dialog.setContentText("Salvataggio:");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(slotName -> {
+            try {
+                boolean success = gameEngine.loadGame(slotName);
+                if (success) {
+                    showStats();
+                    showAlert(Alert.AlertType.INFORMATION, "Partita caricata correttamente");
+                } else
+                    showAlert(Alert.AlertType.ERROR, "Impossibile caricare il file: " + slotName);
+            } catch (Exception e) {
+                showAlert(Alert.AlertType.ERROR, "Errore critico nel caricamento");
+            }
+        });
     }
 
     private void showAlert(Alert.AlertType type, String message) {
