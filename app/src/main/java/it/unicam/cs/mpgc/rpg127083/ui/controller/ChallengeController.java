@@ -109,6 +109,10 @@ public class ChallengeController {
             showGameOver();
             return;
         }
+        if(gameEngine.checkGameState()== GameState.VICTORY){
+            showWin();
+            return;
+        }
         outcomeLabel.setText(outcome.description());
         outcomeLabel.setVisible(true);
         outcomeLabel.setManaged(true);
@@ -142,25 +146,6 @@ public class ChallengeController {
         nestButton.setVisible(false);
         nextChallengeButton.setVisible(false);
         backToMenu.setVisible(true);
-    }
-
-    private void renderState() {
-        GameState state = gameEngine.checkGameState();
-        switch(state) {
-            case GAME_OVER -> showGameOver();
-            case VICTORY -> showWin();
-            case RUNNING -> showChallenge(gameEngine.getCurrentChallenge());
-        }
-    }
-    private void showChallenge(Challenge challenge) {
-        if (challenge == null) return;
-        challengeDescriptionLabel.setText(challenge.getDescription());
-        outcomeLabel.setVisible(false);
-        outcomeLabel.setManaged(false);
-        actButton.setDisable(false);
-        waitButton.setDisable(false);
-        nestButton.setVisible(false);
-        nextChallengeButton.setVisible(false);
     }
 
 }
