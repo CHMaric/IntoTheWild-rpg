@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 public class SceneManager {
     private final Stage primaryStage;
+    private Scene scene;
 
     public SceneManager(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -14,20 +15,20 @@ public class SceneManager {
 
     public void switchScene(String fxmlPath, Object controller) {
         try {
-            System.out.println("FXML PATH: " + fxmlPath);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            if (controller != null) {
+            if (controller != null)
                 loader.setController(controller);
-            }
             Parent root = loader.load();
-            System.out.println("ROOT LOADED: " + root);
-            primaryStage.setScene(new Scene(root));
+
+            if (scene == null) {
+                scene = new Scene(root, 800, 600);
+                primaryStage.setScene(scene);
+            } else
+                scene.setRoot(root);
+
             primaryStage.show();
-            System.out.println("SCENE SET COMPLETATA");
         } catch (Exception e) {
-            System.err.println("FATAL ERROR LOADING SCENE: " + fxmlPath);
             e.printStackTrace();
-            throw new RuntimeException(e);
         }
     }
 }
