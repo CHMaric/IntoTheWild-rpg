@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg127083.persistence.interfaces;
 
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 import java.util.List;
 
 /**

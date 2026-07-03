@@ -1,6 +1,6 @@
-package it.unicam.cs.mpgc.rpg127083.model.habitats;
+package it.unicam.cs.mpgc.rpg127083.core.model.habitats;
 
-import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.AnimalType;
 import java.util.Set;
 
 public class ItalianAlps extends Habitat {

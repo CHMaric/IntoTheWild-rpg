@@ -1,7 +1,6 @@
-package it.unicam.cs.mpgc.rpg127083.model.animals;
+package it.unicam.cs.mpgc.rpg127083.core.model.animals;
 
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 
 
 public class Wolf extends Animal{

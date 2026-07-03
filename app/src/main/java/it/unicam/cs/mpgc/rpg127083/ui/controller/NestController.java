@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
-import it.unicam.cs.mpgc.rpg127083.core.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

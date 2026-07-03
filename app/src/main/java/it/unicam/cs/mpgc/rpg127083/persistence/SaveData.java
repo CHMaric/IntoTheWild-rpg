@@ -1,7 +1,6 @@
 package it.unicam.cs.mpgc.rpg127083.persistence;
 
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
-import lombok.AllArgsConstructor;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

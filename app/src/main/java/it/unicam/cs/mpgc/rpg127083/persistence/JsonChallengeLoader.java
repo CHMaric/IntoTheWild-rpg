@@ -2,8 +2,8 @@ package it.unicam.cs.mpgc.rpg127083.persistence;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 
 import java.io.IOException;

@@ -1,12 +1,10 @@
-package it.unicam.cs.mpgc.rpg127083.core;
+package it.unicam.cs.mpgc.rpg127083.core.mechanics;
 
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Choice;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatFactory;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatRegistry;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.AnimalType;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatFactory;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.persistence.*;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService;

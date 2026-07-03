@@ -1,10 +1,10 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
-import it.unicam.cs.mpgc.rpg127083.core.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.core.GameState;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameState;
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
