@@ -50,9 +50,7 @@ public class StartMenuController {
             if (!slotName.isBlank()) {
                 boolean success = gameEngine.loadGame(slotName.trim());
                 if (success) {
-                    // Se il caricamento va a buon fine, andiamo alla schermata Nest
-                    // Nota: ChallengeController gestisce solitamente il loop, passiamolo coerentemente
-                    ChallengeController challengeController = new ChallengeController(gameEngine, sceneManager);
+                    NestController challengeController = new NestController(gameEngine, sceneManager);
                     sceneManager.switchScene("/view/NestView.fxml", challengeController);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

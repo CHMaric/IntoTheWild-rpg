@@ -1,8 +1,11 @@
 package it.unicam.cs.mpgc.rpg127083.model.challenge;
 
+import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
 import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
+import lombok.Getter;
+import lombok.NonNull;
 
-
+@Getter
 public class Choice {
     private final String description;
     private final String outcomeDescription;
@@ -19,18 +22,16 @@ public class Choice {
         this.staminaEffect = staminaEffect;
     }
 
-    public void applyEffects(Animal animal) {
+    public ChoiceOutcome applyEffects(@NonNull Animal animal) {
         animal.setLife(animal.getLife() + this.lifeEffect);
         animal.setEnergy(animal.getEnergy() + this.energyEffect);
         animal.setStamina(animal.getStamina() + this.staminaEffect);
-    }
-
-    public String getOutcomeDescription() {
-        return outcomeDescription;
-    }
-
-    public String getDescription() {
-        return description;
+        return new ChoiceOutcome(
+                outcomeDescription,
+                lifeEffect,
+                energyEffect,
+                staminaEffect
+        );
     }
 
 }

@@ -1,7 +1,10 @@
 package it.unicam.cs.mpgc.rpg127083.model.challenge;
 
+import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
 import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
+import lombok.Getter;
 
+@Getter
 public class Challenge {
     private final int stage;
     private final String description;
@@ -14,18 +17,11 @@ public class Challenge {
         this.actChoice = actChoice;
         this.waitChoice = waitChoice;
     }
-
-    public void executeAct(Animal animal) {
-        actChoice.applyEffects(animal);
+    public ChoiceOutcome executeAct(Animal animal){
+        return actChoice.applyEffects(animal);
     }
-
-    public void executeWait(Animal animal) {
-        waitChoice.applyEffects(animal);
+    public ChoiceOutcome executeWait(Animal animal){
+        return waitChoice.applyEffects(animal);
     }
-
-    public String getDescription() { return description; }
-    public String getActOutcome() { return actChoice.getOutcomeDescription(); }
-    public String getWaitOutcome() { return waitChoice.getOutcomeDescription(); }
-    public int getStage() { return stage; }
 }
 
