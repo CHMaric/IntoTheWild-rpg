@@ -1,9 +1,0 @@
-{
-  "id": 1,
-  "animalType": "WOLF",
-  "habitat": "ITALIAN_ALPS",
-  "life": 90.0,
-  "energy": 125.0,
-  "stamina": 90.0,
-  "currentStage": 1
-}

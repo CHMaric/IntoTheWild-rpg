@@ -127,6 +127,10 @@ public class ChallengeController {
     private void showGameOver() {
         challengeDescriptionLabel.setText("SEI MORTO");
         outcomeLabel.setText("La natura ha fatto il suo corso.");
+        freezeButtons();
+    }
+
+    private void freezeButtons() {
         outcomeLabel.setVisible(true);
         outcomeLabel.setManaged(true);
         actButton.setDisable(true);
@@ -139,13 +143,7 @@ public class ChallengeController {
     private void showWin(){
         challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
         outcomeLabel.setText("La natura non ti ha sopraffatto");
-        outcomeLabel.setVisible(true);
-        outcomeLabel.setManaged(true);
-        actButton.setDisable(true);
-        waitButton.setDisable(true);
-        nestButton.setVisible(false);
-        nextChallengeButton.setVisible(false);
-        backToMenu.setVisible(true);
+        freezeButtons();
     }
 
 }
