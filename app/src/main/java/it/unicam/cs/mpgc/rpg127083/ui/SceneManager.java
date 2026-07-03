@@ -14,16 +14,20 @@ public class SceneManager {
 
     public void switchScene(String fxmlPath, Object controller) {
         try {
+            System.out.println("FXML PATH: " + fxmlPath);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            if(controller != null)
+            if (controller != null) {
                 loader.setController(controller);
+            }
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
+            System.out.println("ROOT LOADED: " + root);
+            primaryStage.setScene(new Scene(root));
             primaryStage.show();
+            System.out.println("SCENE SET COMPLETATA");
         } catch (Exception e) {
-            System.err.println("Error loading scene: " + fxmlPath);
+            System.err.println("FATAL ERROR LOADING SCENE: " + fxmlPath);
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

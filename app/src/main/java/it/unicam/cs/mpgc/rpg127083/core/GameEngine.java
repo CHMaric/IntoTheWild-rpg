@@ -1,17 +1,21 @@
 package it.unicam.cs.mpgc.rpg127083.core;
 
+import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
 import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
 import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
+import it.unicam.cs.mpgc.rpg127083.model.challenge.Choice;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatFactory;
 import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.persistence.*;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.List;
 
+@Getter
 public class GameEngine {
 
     private final ChallengeLoader challengeLoader;
@@ -49,26 +53,24 @@ public class GameEngine {
         return challenges.get(currentStage);
     }
 
-    public String executeActChoice(){
+    public ChoiceOutcome executeActChoice(){
         Challenge current = getCurrentChallenge();
-        if(current != null){
-            current.executeAct(player);
-            String outcome = current.getActOutcome();
-            currentStage++;
-            return outcome;
-        }
-        return "";
+        if(current == null)
+            return null;
+        Choice choice = current.getActChoice();
+        ChoiceOutcome res = current.executeAct(player);
+        currentStage++;
+        return res;
     }
 
-    public String executeWaitChoice(){
+    public ChoiceOutcome executeWaitChoice(){
         Challenge current = getCurrentChallenge();
-        if(current != null){
-            current.executeWait(player);
-            String outcome = current.getWaitOutcome();
-            currentStage++;
-            return outcome;
-        }
-        return "";
+        if(current == null)
+            return null;
+        Choice choice = current.getWaitChoice();
+        ChoiceOutcome res = current.executeWait(player);
+        currentStage++;
+        return res;
     }
 
     public GameState checkGameState(){

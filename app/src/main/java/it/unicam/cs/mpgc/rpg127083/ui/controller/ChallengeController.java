@@ -1,15 +1,13 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.GameEngine;
+import it.unicam.cs.mpgc.rpg127083.core.GameState;
+import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
+import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-
-import java.util.Optional;
+import javafx.scene.control.*;
 
 public class ChallengeController {
     private final GameEngine gameEngine;
@@ -21,7 +19,22 @@ public class ChallengeController {
     @FXML
     private Button waitButton;
     @FXML
-    private Label challengeDesccriptionLabel;
+    private Label challengeDescriptionLabel;
+    @FXML
+    private Label outcomeLabel;
+    @FXML
+    private Button nestButton;
+    @FXML
+    private Button nextChallengeButton;
+    @FXML
+    private ProgressBar lifeBar;
+    @FXML
+    private ProgressBar energyBar;
+    @FXML
+    private ProgressBar staminaBar;
+    @FXML
+    private Button backToMenu;
+
 
     public ChallengeController(GameEngine gameEngine, SceneManager sceneManager) {
         this.gameEngine = gameEngine;
@@ -31,53 +44,123 @@ public class ChallengeController {
     @FXML
     public void initialize(){
         updateChallengeUI();
-        actButton.setOnAction(event ->{
-            String outcome = gameEngine.executeActChoice();
-            showChoiceOutcome(outcome);
-        });
+        actButton.setOnAction(event -> handleActChoice());
+        waitButton.setOnAction(event -> handleWaitChoice());
+        nestButton.setOnAction(event -> backToNest());
+        nextChallengeButton.setOnAction(event -> nextChallenge());
+        backToMenu.setOnAction(event -> handleEnding());
+    }
 
-        waitButton.setOnAction(event -> {
-            String outcome = gameEngine.executeWaitChoice();
-            showChoiceOutcome(outcome);
-        });
+    private void handleEnding() {
+        StartMenuController startMenu =
+                new StartMenuController(gameEngine, sceneManager);
+        sceneManager.switchScene("/view/StartMenuView.fxml", startMenu);
+    }
+
+    private void nextChallenge() {
+        updateChallengeUI();
+    }
+
+    private void backToNest() {
+        NestController nestController = new NestController(gameEngine, sceneManager);
+        sceneManager.switchScene("/view/NestView.fxml", nestController);
+    }
+
+    private void handleWaitChoice() {
+        showChoiceOutcome(gameEngine.executeWaitChoice());
+    }
+
+    private void handleActChoice() {
+        showChoiceOutcome(gameEngine.executeActChoice());;
     }
 
     private void updateChallengeUI(){
         Challenge current = gameEngine.getCurrentChallenge();
-        if(current != null){
-            challengeDesccriptionLabel.setText(current.getDescription());
-        } else {
+        if(current != null)
+            challengeDescriptionLabel.setText(current.getDescription());
+        else
             showWin();
-        }
+        updateStats();
+        resetScreen();
     }
 
-    private void showChoiceOutcome(String s){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Esito della decisione");
-        alert.setHeaderText(null);
-        alert.setContentText(s + "Scegli la tua prossima mossa");
 
-        ButtonType nestButton = new ButtonType("Torna al nido");
-        ButtonType nextButton = new ButtonType("Prossima sfida");
-        alert.getButtonTypes().setAll(nestButton, nextButton);
+    private void updateStats() {
+        Animal animal = gameEngine.getPlayer();
+        lifeBar.setProgress(animal.getLife() / 100.0);
+        energyBar.setProgress(animal.getEnergy() / 100.0);
+        staminaBar.setProgress(animal.getStamina() / 100.0);
+    }
+    private void resetScreen() {
+        outcomeLabel.setVisible(false);
+        outcomeLabel.setManaged(false);
+        nestButton.setVisible(false);
+        nestButton.setManaged(false);
+        nextChallengeButton.setVisible(false);
+        nextChallengeButton.setManaged(false);
+        actButton.setDisable(false);
+        waitButton.setDisable(false);
+        backToMenu.setVisible(false);
+    }
 
-        Optional<ButtonType> choice = alert.showAndWait();
-        if(choice.isPresent() && choice.get() == nestButton){
-            NestController nestController = new NestController(gameEngine, sceneManager);
-            sceneManager.switchScene("/view/NestView.fxml", nestController);
+    private void showChoiceOutcome(ChoiceOutcome outcome){
+        updateStats();
+        if(gameEngine.checkGameState()== GameState.GAME_OVER){
+            showGameOver();
+            return;
         }
-        else
-            updateChallengeUI();
+        outcomeLabel.setText(outcome.description());
+        outcomeLabel.setVisible(true);
+        outcomeLabel.setManaged(true);
+        nestButton.setVisible(true);
+        nestButton.setManaged(true);
+        nextChallengeButton.setVisible(true);
+        nextChallengeButton.setManaged(true);
+        actButton.setDisable(true);
+        waitButton.setDisable(true);
+    }
+
+    private void showGameOver() {
+        challengeDescriptionLabel.setText("SEI MORTO");
+        outcomeLabel.setText("La natura ha fatto il suo corso.");
+        outcomeLabel.setVisible(true);
+        outcomeLabel.setManaged(true);
+        actButton.setDisable(true);
+        waitButton.setDisable(true);
+        nestButton.setVisible(false);
+        nextChallengeButton.setVisible(false);
+        backToMenu.setVisible(true);
     }
 
     private void showWin(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Hai vinto!");
-        alert.setContentText("Sei sopravvissuto alle difficoltà della vita nella natura.");
-        alert.showAndWait();
-        StartMenuController startMenu = new StartMenuController(gameEngine, sceneManager);
-        sceneManager.switchScene("/view/StartMenuView.fxml", startMenu);
+        challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
+        outcomeLabel.setText("La natura non ti ha sopraffatto");
+        outcomeLabel.setVisible(true);
+        outcomeLabel.setManaged(true);
+        actButton.setDisable(true);
+        waitButton.setDisable(true);
+        nestButton.setVisible(false);
+        nextChallengeButton.setVisible(false);
+        backToMenu.setVisible(true);
     }
 
+    private void renderState() {
+        GameState state = gameEngine.checkGameState();
+        switch(state) {
+            case GAME_OVER -> showGameOver();
+            case VICTORY -> showWin();
+            case RUNNING -> showChallenge(gameEngine.getCurrentChallenge());
+        }
+    }
+    private void showChallenge(Challenge challenge) {
+        if (challenge == null) return;
+        challengeDescriptionLabel.setText(challenge.getDescription());
+        outcomeLabel.setVisible(false);
+        outcomeLabel.setManaged(false);
+        actButton.setDisable(false);
+        waitButton.setDisable(false);
+        nestButton.setVisible(false);
+        nextChallengeButton.setVisible(false);
+    }
 
 }

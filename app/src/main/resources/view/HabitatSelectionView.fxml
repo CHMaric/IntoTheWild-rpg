@@ -22,9 +22,9 @@
       </ImageView>
       <VBox alignment="CENTER" layoutX="212.0" layoutY="61.0" prefHeight="440.0" prefWidth="376.0" spacing="70.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="284.0" style="-fx-background-color: #FFFFFF;" text="Scegli il tuo Habitat" textAlignment="CENTER" underline="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="353.0" style="-fx-background-color: #FFFFFF;" text="Scegli il tuo Habitat" textAlignment="CENTER" underline="true">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="36.0" />
                </font>
                <opaqueInsets>
                   <Insets />

@@ -38,7 +38,7 @@ public class AnimalSelectionController {
         gameEngine.initializeHabitat(selectedHabitat);
         gameEngine.startGame(animalType);
         ChallengeController challengeController = new ChallengeController(gameEngine, sceneManager);
-        sceneManager.switchScene("/resources/view/ChallengeView.fxml", challengeController);
+        sceneManager.switchScene("/view/ChallengeView.fxml", challengeController);
     }
 
 }

@@ -10,8 +10,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-
 
 <StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -32,21 +34,21 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="wolfButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="139.0" prefWidth="145.0" text="Lupo" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="wolfButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Lupo" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true">
+                        <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/wolf.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="foxButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="142.0" prefWidth="142.0" text="Volpe" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="foxButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Volpe" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="113.0" fitWidth="98.0" pickOnBounds="true">
+                        <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/fox.jpg" />
                            </image>
@@ -56,50 +58,59 @@
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="vultureButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" text="Gipeto" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="vultureButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Gipeto" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="110.0" fitWidth="108.0" pickOnBounds="true">
+                        <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/vulture.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="hareButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" text="Lepre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="hareButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Lepre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="110.0" fitWidth="127.0" pickOnBounds="true">
+                        <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/hare.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
                   </Button>
                </children>
             </GridPane>
          </center>
          <top>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="382.0" style="-fx-background-color: #FFFFFF;" text="Scegli l'animale con cui giocare" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="372.0" style="-fx-background-color: #FFFFFF;" text="Scegli il tuo Habitat" textAlignment="CENTER" underline="true" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets top="10.0" />
+                  <Insets top="20.0" />
                </BorderPane.margin>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.12163742631673813" green="0.5473684072494507" blue="0.26354774832725525" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
          </top>
-         <bottom>
-            <Button fx:id="goBackButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Indietro" BorderPane.alignment="TOP_CENTER">
-               <font>
-                  <Font name="System Bold Italic" size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-               <BorderPane.margin>
-                  <Insets bottom="10.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
       </BorderPane>
    </children>
 </StackPane>
