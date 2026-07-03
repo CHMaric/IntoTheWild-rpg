@@ -57,7 +57,6 @@ public class GameEngine {
         Challenge current = getCurrentChallenge();
         if(current == null)
             return null;
-        Choice choice = current.getActChoice();
         ChoiceOutcome res = current.executeAct(player);
         currentStage++;
         return res;
@@ -67,7 +66,6 @@ public class GameEngine {
         Challenge current = getCurrentChallenge();
         if(current == null)
             return null;
-        Choice choice = current.getWaitChoice();
         ChoiceOutcome res = current.executeWait(player);
         currentStage++;
         return res;

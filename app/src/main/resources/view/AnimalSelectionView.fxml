@@ -36,7 +36,7 @@
                      <graphic>
                         <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/wolf1.jpg" />
+                              <Image url="@../images/wolf.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -45,7 +45,7 @@
                      <graphic>
                         <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/fox1.jpg" />
+                              <Image url="@../images/fox.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -57,7 +57,7 @@
                      <graphic>
                         <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/vulture1.jpg" />
+                              <Image url="@../images/vulture.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -69,7 +69,7 @@
                      <graphic>
                         <ImageView fitHeight="145.0" fitWidth="145.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/hare1.jpg" />
+                              <Image url="@../images/hare.jpg" />
                            </image>
                         </ImageView>
                      </graphic>

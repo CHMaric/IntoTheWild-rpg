@@ -48,7 +48,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/ItalianAlpsBackground1.jpg" />
+                        <Image url="@../images/alpsBackground.jpg" />
                      </image>
                   </ImageView>
                </graphic>
