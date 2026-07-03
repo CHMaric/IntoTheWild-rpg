@@ -1,0 +1,9 @@
+{
+  "id": 2,
+  "animalType": "HARE",
+  "habitat": "ITALIAN_ALPS",
+  "life": 45.0,
+  "energy": 80.0,
+  "stamina": 70.0,
+  "currentStage": 1
+}

@@ -1,8 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
-
-</AnchorPane>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/NestStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Label contentDisplay="RIGHT" text="Vita">
+                     <graphic>
+                        <ProgressBar fx:id="lifeBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="RIGHT" text="Energia">
+                     <graphic>
+                        <ProgressBar fx:id="energyBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label contentDisplay="RIGHT" text="Stamina">
+                     <graphic>
+                        <ProgressBar fx:id="staminaBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+               <children>
+                  <Label fx:id="animalTypeLabel" text="Player">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="habitatLabel" layoutX="292.0" layoutY="200.0" text="Habitat">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastChallenge" layoutX="310.0" layoutY="200.0" text="Ultima Sfida">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+               <children>
+                  <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Salva">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="loadButton" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="317.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Carica">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="challengeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="317.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Sfida">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="50.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="50.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
