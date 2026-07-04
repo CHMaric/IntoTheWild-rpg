@@ -41,36 +41,9 @@ public class StartMenuController {
     }
 
     private void handleLoadGame(){
-        List<String> availableSaves = gameEngine.getAvailableSaveSlots();
-
-        if (availableSaves.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Nessun Salvataggio");
-            alert.setHeaderText(null);
-            alert.setContentText("Non ci sono partite salvate al momento.");
-            alert.showAndWait();
-            return;
-        }
-        ChoiceDialog<String> dialog = new ChoiceDialog<>(availableSaves.get(0), availableSaves);
-        dialog.setTitle("Carica Partita");
-        dialog.setHeaderText("Seleziona lo slot di salvataggio da caricare:");
-        dialog.setContentText("Salvataggio:");
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(slotName -> {
-            boolean success = gameEngine.loadGame(slotName);
-            if (success) {
-                NestController nestController = new NestController(gameEngine, sceneManager);
-                sceneManager.switchScene("/view/NestView.fxml", nestController);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Errore di Caricamento");
-                alert.setHeaderText(null);
-                alert.setContentText("Impossibile caricare il file: " + slotName);
-                alert.showAndWait();
-            }
-        });
+        SavesController savesController = new SavesController(sceneManager, gameEngine, false);
+        sceneManager.switchScene("/view/SavesView.fxml", savesController);
     }
-
     private void exitGame(){
         Platform.exit();
         System.exit(0);

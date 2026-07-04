@@ -9,4 +9,5 @@ public interface GamePersistenceService {
     void saveGame(SaveData saveData, String slotName) throws IOException;
     SaveData loadGame(String slotName) throws IOException;
     List<String> getAvailableSlots();
+    void deleteSave(String slotName) throws IOException;
 }
