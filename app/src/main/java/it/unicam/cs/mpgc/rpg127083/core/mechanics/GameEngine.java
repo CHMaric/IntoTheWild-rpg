@@ -100,8 +100,4 @@ public class GameEngine {
             return false;
         }
     }
-
-    public List<String> getAvailableSaveSlots() {
-        return persistenceService.getAvailableSlots();
-    }
 }

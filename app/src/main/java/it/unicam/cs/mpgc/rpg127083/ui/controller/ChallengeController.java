@@ -34,6 +34,10 @@ public class ChallengeController {
     private ProgressBar staminaBar;
     @FXML
     private Button backToMenu;
+    @FXML
+    private Label actLabel;
+    @FXML
+    private Label waitLabel;
 
 
     public ChallengeController(GameEngine gameEngine, SceneManager sceneManager) {
@@ -76,8 +80,11 @@ public class ChallengeController {
 
     private void updateChallengeUI(){
         Challenge current = gameEngine.getCurrentChallenge();
-        if(current != null)
+        if(current != null) {
             challengeDescriptionLabel.setText(current.getDescription());
+            actLabel.setText(current.getActChoice().getDescription());
+            waitLabel.setText(current.getWaitChoice().getDescription());
+        }
         else
             showWin();
         updateStats();
