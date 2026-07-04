@@ -44,7 +44,7 @@ Sono presenti inoltre nella cartella resources: challenges, images, style, view.
     - dto: package per record
 
 - peristence: classi per la peristenza
-    -interfaces: interfacce implementate dalle classi concrete per la persistenza
+        -interfaces: interfacce implementate dalle classi concrete per la persistenza
 
 - ui: contiene lo SceneManager per la navigazione tra le schermate
     - controller: controller per le view
