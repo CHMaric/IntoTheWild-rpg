@@ -106,4 +106,13 @@ public class GameEngine {
     public List<String> getAvailableSaveSlots() {
         return persistenceService.getAvailableSlots();
     }
+
+    public boolean deleteSavedGame(String slotName){
+        try {
+            persistenceService.deleteSave(slotName);
+            return true;
+        } catch (IOException e) {
+            throw new IllegalStateException("Can't delete save game", e);
+        }
+    }
 }

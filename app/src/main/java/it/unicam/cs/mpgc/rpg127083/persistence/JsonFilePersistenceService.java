@@ -45,4 +45,15 @@ public class JsonFilePersistenceService implements GamePersistenceService {
 
         return slots;
     }
+
+    @Override
+    public void deleteSave(String slotName) throws IOException {
+        String filePath = saveDirectory + slotName + ".json";
+        File file = new File(filePath);
+        if(!file.exists())
+            throw new IOException("Save file does not exist: " + filePath);
+        if (!file.delete()) {
+            throw new IOException("Failed to delete save file: " + filePath);
+        }
+    }
 }
