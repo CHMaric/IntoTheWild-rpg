@@ -88,16 +88,22 @@ public class GameEngine {
     public boolean loadGame(String slotName) {
         try {
             SaveData data = this.persistenceService.loadGame(slotName);
-
-            this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
-            AnimalType type = AnimalType.valueOf(data.getAnimalType());
-            this.player = habitatFactory.createAnimal(type);
-            data.restorePlayerState(this.player);
-            this.currentStage = data.getCurrentStage();
-            this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
+            restoreGame(data);
             return true;
         } catch (IOException e) {
             return false;
         }
+    }
+    private void restoreGame(SaveData data){
+        this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
+        AnimalType type = AnimalType.valueOf(data.getAnimalType());
+        this.player = habitatFactory.createAnimal(type);
+        data.restorePlayerState(this.player);
+        this.currentStage = data.getCurrentStage();
+        this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
+    }
+
+    public List<String> getAvailableSaveSlots() {
+        return persistenceService.getAvailableSlots();
     }
 }

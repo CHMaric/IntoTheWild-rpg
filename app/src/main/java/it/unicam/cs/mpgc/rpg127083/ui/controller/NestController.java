@@ -53,9 +53,9 @@ public class NestController {
     private void showStats(){
         Animal player = gameEngine.getPlayer();
         if (player == null) return;
-        lifeBar.setProgress(gameEngine.getPlayer().getLife() / 100.0);
-        energyBar.setProgress(gameEngine.getPlayer().getEnergy() / 100.0);
-        staminaBar.setProgress(gameEngine.getPlayer().getStamina() / 100.0);
+        lifeBar.setProgress(player.getLife() / 100.0);
+        energyBar.setProgress(player.getEnergy() / 100.0);
+        staminaBar.setProgress(player.getStamina() / 100.0);
         animalTypeLabel.setText("Animale: " + player.getType());
         habitatLabel.setText("Habitat: " + player.getHabitat().getLabel());
         lastChallenge.setText("Stage: " + gameEngine.getCurrentStage());
@@ -81,7 +81,7 @@ public class NestController {
     }
 
     private void handleLoad(){
-        List<String> availableSaves = gameEngine.getPersistenceService().getAvailableSlots();
+        List<String> availableSaves = gameEngine.getAvailableSaveSlots();
         if (availableSaves.isEmpty()) {
             showAlert(Alert.AlertType.INFORMATION, "Non ci sono partite salvate al momento.");
             return;
@@ -91,22 +91,20 @@ public class NestController {
         dialog.setHeaderText("Seleziona lo slot:");
         dialog.setContentText("Salvataggio:");
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(slotName -> {
-            try {
-                boolean success = gameEngine.loadGame(slotName);
-                if (success) {
-                    showStats();
-                    showAlert(Alert.AlertType.INFORMATION, "Partita caricata correttamente");
-                } else
-                    showAlert(Alert.AlertType.ERROR, "Impossibile caricare il file: " + slotName);
-            } catch (Exception e) {
-                showAlert(Alert.AlertType.ERROR, "Errore critico nel caricamento");
-            }
+        result.ifPresent(slotName ->{
+            boolean success = gameEngine.loadGame(slotName);
+            if (success) {
+                showStats();
+                showAlert(Alert.AlertType.INFORMATION, "Partita caricata correttamente");
+                }
+            else
+                showAlert(Alert.AlertType.ERROR, "Impossibile caricare il file: " + slotName);
         });
     }
 
     private void showAlert(Alert.AlertType type, String message) {
         Alert alert = new Alert(type);
+        alert.setTitle(type == Alert.AlertType.ERROR ? "Errore" : "Informazione");
         alert.setTitle(message);
         alert.setHeaderText(null);
         alert.showAndWait();

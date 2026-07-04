@@ -41,7 +41,7 @@ public class StartMenuController {
     }
 
     private void handleLoadGame(){
-        List<String> availableSaves = gameEngine.getPersistenceService().getAvailableSlots();
+        List<String> availableSaves = gameEngine.getAvailableSaveSlots();
 
         if (availableSaves.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

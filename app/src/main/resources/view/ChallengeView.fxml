@@ -90,7 +90,7 @@
          <right>
             <VBox alignment="CENTER" prefWidth="157.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="actLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="155.0" text="actLabel" wrapText="true">
+                  <Label fx:id="actLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="155.0" text="actLabel" wrapText="true">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
@@ -100,7 +100,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
-                  <Label fx:id="waitLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="155.0" text="waitLabel" wrapText="true">
+                  <Label fx:id="waitLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="155.0" text="waitLabel" wrapText="true">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>

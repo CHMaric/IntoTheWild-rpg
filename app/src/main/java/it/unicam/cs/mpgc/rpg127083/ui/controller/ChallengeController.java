@@ -86,7 +86,7 @@ public class ChallengeController {
             waitLabel.setText(current.getWaitChoice().getDescription());
         }
         else
-            showWin();
+            showWin(null);
         updateStats();
         resetScreen();
     }
@@ -147,14 +147,12 @@ public class ChallengeController {
         backToMenu.setVisible(true);
     }
 
-    private void showWin(){
-        challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
-        outcomeLabel.setText("La natura non ti ha sopraffatto");
-        freezeButtons();
-    }
     private void showWin(String s){
         challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
-        outcomeLabel.setText(s + "\nLa natura non ti ha sopraffatto");
+        if(s.equals(null))
+            outcomeLabel.setText("La natura non ti ha sopraffatto");
+        else
+            outcomeLabel.setText(s + "\nLa natura non ti ha sopraffatto");
         freezeButtons();
     }
 
