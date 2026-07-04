@@ -40,11 +40,13 @@ Sono presenti inoltre nella cartella resources: challenges, images, style, view.
     - model: package principale che contiene le entità di interesse
         - animals: classe astratta Animal + implementazioni
         - habitats: classe astratta Habitat + implementazioni
-            - factory: interfaccia Habitat factory + implementazioni e HabitatRegitry  
+
+          - factory: interfaccia Habitat factory + implementazioni e HabitatRegitry  
     - dto: package per record
 
 - peristence: classi per la peristenza
-        -interfaces: interfacce implementate dalle classi concrete per la persistenza
+
+  - interfaces: interfacce implementate dalle classi concrete per la persistenza
 
 - ui: contiene lo SceneManager per la navigazione tra le schermate
     - controller: controller per le view
