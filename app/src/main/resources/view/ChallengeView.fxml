@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../style/ChallengeStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="503.0" stylesheets="@../style/ChallengeStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane>
          <top>
@@ -47,24 +47,21 @@
             </HBox>
          </top>
          <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="challengeDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="402.0" text="Description Label" wrapText="true">
+                  <Label fx:id="challengeDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" text="Description Label" wrapText="true">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <VBox alignment="CENTER" prefHeight="251.0" prefWidth="385.0">
+                  <VBox alignment="CENTER">
                      <children>
-                        <Label fx:id="outcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="132.0" text="Outcome descrpition" textAlignment="JUSTIFY" wrapText="true">
+                        <Label fx:id="outcomeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="Outcome descrpition" textAlignment="JUSTIFY" wrapText="true">
                            <font>
                               <Font name="System Bold Italic" size="18.0" />
                            </font>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets right="20.0" />
-                     </padding>
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -91,22 +88,29 @@
             </VBox>
          </center>
          <right>
-            <VBox alignment="CENTER" spacing="50.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefWidth="157.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="actButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="100.0" text="Agisci">
+                  <Label fx:id="actLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="155.0" text="actLabel" wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="actButton" contentDisplay="TOP" mnemonicParsing="false" text="Agisci">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="waitButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="100.0" text="Aspetta">
+                  <Label fx:id="waitLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="155.0" text="waitLabel" wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="waitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Aspetta">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Button>
                </children>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
             </VBox>
          </right>
          <bottom>

@@ -1,6 +1,6 @@
-package it.unicam.cs.mpgc.rpg127083.model.animals;
+package it.unicam.cs.mpgc.rpg127083.core.model.animals;
 
-import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

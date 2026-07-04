@@ -1,12 +1,10 @@
-package it.unicam.cs.mpgc.rpg127083.core;
+package it.unicam.cs.mpgc.rpg127083.core.mechanics;
 
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.model.animals.AnimalType;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Choice;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatFactory;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.factory.HabitatRegistry;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.AnimalType;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatFactory;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.persistence.*;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService;
@@ -57,7 +55,6 @@ public class GameEngine {
         Challenge current = getCurrentChallenge();
         if(current == null)
             return null;
-        Choice choice = current.getActChoice();
         ChoiceOutcome res = current.executeAct(player);
         currentStage++;
         return res;
@@ -67,7 +64,6 @@ public class GameEngine {
         Challenge current = getCurrentChallenge();
         if(current == null)
             return null;
-        Choice choice = current.getWaitChoice();
         ChoiceOutcome res = current.executeWait(player);
         currentStage++;
         return res;
@@ -92,17 +88,19 @@ public class GameEngine {
     public boolean loadGame(String slotName) {
         try {
             SaveData data = this.persistenceService.loadGame(slotName);
-
-            this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
-            AnimalType type = AnimalType.valueOf(data.getAnimalType());
-            this.player = habitatFactory.createAnimal(type);
-            data.restorePlayerState(this.player);
-            this.currentStage = data.getCurrentStage();
-            this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
+            restoreGame(data);
             return true;
         } catch (IOException e) {
             return false;
         }
+    }
+    private void restoreGame(SaveData data){
+        this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
+        AnimalType type = AnimalType.valueOf(data.getAnimalType());
+        this.player = habitatFactory.createAnimal(type);
+        data.restorePlayerState(this.player);
+        this.currentStage = data.getCurrentStage();
+        this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
     }
 
     public List<String> getAvailableSaveSlots() {

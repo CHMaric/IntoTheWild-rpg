@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg127083.model.habitats.factory;
+package it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory;
 
 import java.util.HashMap;
 import java.util.Map;

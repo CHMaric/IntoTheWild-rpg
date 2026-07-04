@@ -19,13 +19,8 @@ public class SceneManager {
             if (controller != null)
                 loader.setController(controller);
             Parent root = loader.load();
-
-            if (scene == null) {
-                scene = new Scene(root, 800, 600);
-                primaryStage.setScene(scene);
-            } else
-                scene.setRoot(root);
-
+            scene = new Scene(root, 800, 600);
+            primaryStage.setScene(scene);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

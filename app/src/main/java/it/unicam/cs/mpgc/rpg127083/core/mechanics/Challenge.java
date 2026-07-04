@@ -1,7 +1,7 @@
-package it.unicam.cs.mpgc.rpg127083.model.challenge;
+package it.unicam.cs.mpgc.rpg127083.core.mechanics;
 
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import lombok.Getter;
 
 @Getter

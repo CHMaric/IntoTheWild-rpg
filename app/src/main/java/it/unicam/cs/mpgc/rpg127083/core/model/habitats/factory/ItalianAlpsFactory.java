@@ -1,8 +1,8 @@
-package it.unicam.cs.mpgc.rpg127083.model.habitats.factory;
+package it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory;
 
-import it.unicam.cs.mpgc.rpg127083.model.animals.*;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.Habitat;
-import it.unicam.cs.mpgc.rpg127083.model.habitats.ItalianAlps;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.*;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.ItalianAlps;
 
 public class ItalianAlpsFactory implements HabitatFactory{
 

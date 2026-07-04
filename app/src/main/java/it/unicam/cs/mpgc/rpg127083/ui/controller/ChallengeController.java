@@ -1,10 +1,10 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
-import it.unicam.cs.mpgc.rpg127083.core.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.core.GameState;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameState;
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
-import it.unicam.cs.mpgc.rpg127083.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.model.challenge.Challenge;
+import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -34,6 +34,10 @@ public class ChallengeController {
     private ProgressBar staminaBar;
     @FXML
     private Button backToMenu;
+    @FXML
+    private Label actLabel;
+    @FXML
+    private Label waitLabel;
 
 
     public ChallengeController(GameEngine gameEngine, SceneManager sceneManager) {
@@ -76,10 +80,13 @@ public class ChallengeController {
 
     private void updateChallengeUI(){
         Challenge current = gameEngine.getCurrentChallenge();
-        if(current != null)
+        if(current != null) {
             challengeDescriptionLabel.setText(current.getDescription());
+            actLabel.setText(current.getActChoice().getDescription());
+            waitLabel.setText(current.getWaitChoice().getDescription());
+        }
         else
-            showWin();
+            showWin(null);
         updateStats();
         resetScreen();
     }
@@ -106,11 +113,11 @@ public class ChallengeController {
     private void showChoiceOutcome(ChoiceOutcome outcome){
         updateStats();
         if(gameEngine.checkGameState()== GameState.GAME_OVER){
-            showGameOver();
+            showGameOver(outcome.description());
             return;
         }
         if(gameEngine.checkGameState()== GameState.VICTORY){
-            showWin();
+            showWin(outcome.description());
             return;
         }
         outcomeLabel.setText(outcome.description());
@@ -124,9 +131,13 @@ public class ChallengeController {
         waitButton.setDisable(true);
     }
 
-    private void showGameOver() {
+    private void showGameOver(String s){
         challengeDescriptionLabel.setText("SEI MORTO");
-        outcomeLabel.setText("La natura ha fatto il suo corso.");
+        outcomeLabel.setText(s + "\nLa natura ha fatto il suo corso.");
+        freezeButtons();
+    }
+
+    private void freezeButtons() {
         outcomeLabel.setVisible(true);
         outcomeLabel.setManaged(true);
         actButton.setDisable(true);
@@ -136,16 +147,13 @@ public class ChallengeController {
         backToMenu.setVisible(true);
     }
 
-    private void showWin(){
+    private void showWin(String s){
         challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
-        outcomeLabel.setText("La natura non ti ha sopraffatto");
-        outcomeLabel.setVisible(true);
-        outcomeLabel.setManaged(true);
-        actButton.setDisable(true);
-        waitButton.setDisable(true);
-        nestButton.setVisible(false);
-        nextChallengeButton.setVisible(false);
-        backToMenu.setVisible(true);
+        if(s.equals(null))
+            outcomeLabel.setText("La natura non ti ha sopraffatto");
+        else
+            outcomeLabel.setText(s + "\nLa natura non ti ha sopraffatto");
+        freezeButtons();
     }
 
 }
