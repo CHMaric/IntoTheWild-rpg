@@ -53,4 +53,41 @@
       "staminaEffect": -10
     }
   }
+,
+  {
+    "stage": 4,
+    "description": "L'erba scarseggia nei dintorni.",
+    "actChoice": {
+      "description": "Decidi di allontanarti in cerca di cibo.",
+      "outcomeDescription": "Trovi cibo, ma consumi molte energie.",
+      "lifeEffect": 20,
+      "energyEffect": 15,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere vicino ai piccoli.",
+      "outcomeDescription": "Resti al sicuro, ma la fame aumenta.",
+      "lifeEffect": -5,
+      "energyEffect": -15,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 5,
+    "description": "Una volpe si avvicina alla prole.",
+    "actChoice": {
+      "description": "Decidi di attirare la volpe lontano dai piccoli.",
+      "outcomeDescription": "La prole si salva, ma rischi di essere catturato.",
+      "lifeEffect": -40,
+      "energyEffect": -10,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere nascosto.",
+      "outcomeDescription": "La volpe trova uno dei leveretti.",
+      "lifeEffect": -20,
+      "energyEffect": -5,
+      "staminaEffect": 0
+    }
+  }
 ]

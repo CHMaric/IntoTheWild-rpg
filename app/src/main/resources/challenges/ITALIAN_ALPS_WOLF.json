@@ -6,14 +6,14 @@
       "description": "Decidi di andare a caccia.",
       "outcomeDescription": "Catturi un cervo ma vieni ferito",
       "lifeEffect": -10,
-      "energyEffect": 25,
-      "staminaEffect": -10
+      "energyEffect": 20,
+      "staminaEffect": -20
     },
     "waitChoice": {
       "description": "Decidi di aspettare.",
       "outcomeDescription": "Eviti rischi ma la fame aumenta.",
       "lifeEffect": -5,
-      "energyEffect": -15,
+      "energyEffect": -25,
       "staminaEffect": -10
     }
   },
@@ -24,8 +24,8 @@
       "description": "Decidi di osservare gli umani.",
       "outcomeDescription": "Riesci a spaventarli. Difendi il territorio senza subire ferite.",
       "lifeEffect": 0,
-      "energyEffect": 0,
-      "staminaEffect": -5
+      "energyEffect": -10,
+      "staminaEffect": -10
     },
     "waitChoice": {
       "description": "Decidi di nasconderti.",
@@ -41,16 +41,53 @@
     "actChoice": {
       "description": "Decidi di lottare contro il branco rivale.",
       "outcomeDescription": "Difendi il territorio ma subisci ferite.",
-      "lifeEffect": -20,
+      "lifeEffect": -40,
       "energyEffect": -10,
       "staminaEffect": -15
     },
     "waitChoice": {
-      "description": "La coppia alfa è stata sconfitta. Decidi di metterti in salvo.",
-      "outcomeDescription": "Sopravvivi ma perdi il territorio.",
+      "description": "Decidi di metterti in salvo.",
+      "outcomeDescription": "La coppia alfa è stata sconfitta. Sopravvivi ma perdi il territorio.",
+      "lifeEffect": -10,
+      "energyEffect": -20,
+      "staminaEffect": -15
+    }
+  }
+,
+  {
+    "stage": 4,
+    "description": "Un cucciolo del branco si è allontanato.",
+    "actChoice": {
+      "description": "Decidi di cercarlo.",
+      "outcomeDescription": "Ritrovi il cucciolo, ma consumi molte energie.",
+      "lifeEffect": 10,
+      "energyEffect": -20,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di non allontanarti dal branco.",
+      "outcomeDescription": "Il cucciolo viene catturato da un predatore.",
+      "lifeEffect": -25,
+      "energyEffect": -5,
+      "staminaEffect": -5
+    }
+  },
+  {
+    "stage": 5,
+    "description": "Una tormenta rende difficile cacciare.",
+    "actChoice": {
+      "description": "Decidi di continuare la caccia.",
+      "outcomeDescription": "Trovi una preda, ma resti esausto.",
       "lifeEffect": 0,
       "energyEffect": -10,
-      "staminaEffect": -5
+      "staminaEffect": -15
+    },
+    "waitChoice": {
+      "description": "Decidi di aspettare che il tempo migliori.",
+      "outcomeDescription": "Il branco soffre la fame.",
+      "lifeEffect": -20,
+      "energyEffect": -20,
+      "staminaEffect": -10
     }
   }
 ]
