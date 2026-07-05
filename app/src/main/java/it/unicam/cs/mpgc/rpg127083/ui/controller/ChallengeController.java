@@ -91,13 +91,13 @@ public class ChallengeController {
         resetScreen();
     }
 
-
     private void updateStats() {
         Animal animal = gameEngine.getPlayer();
         lifeBar.setProgress(animal.getLife() / 100.0);
         energyBar.setProgress(animal.getEnergy() / 100.0);
         staminaBar.setProgress(animal.getStamina() / 100.0);
     }
+
     private void resetScreen() {
         outcomeLabel.setVisible(false);
         outcomeLabel.setManaged(false);
@@ -121,6 +121,10 @@ public class ChallengeController {
             return;
         }
         outcomeLabel.setText(outcome.description());
+        showButtons();
+    }
+
+    private void showButtons(){
         outcomeLabel.setVisible(true);
         outcomeLabel.setManaged(true);
         nestButton.setVisible(true);
@@ -155,5 +159,4 @@ public class ChallengeController {
             outcomeLabel.setText(s + "\nLa natura non ti ha sopraffatto");
         freezeButtons();
     }
-
 }

@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
 import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;

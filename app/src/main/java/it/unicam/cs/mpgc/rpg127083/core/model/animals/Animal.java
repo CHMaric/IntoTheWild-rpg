@@ -16,7 +16,7 @@ public abstract class Animal {
     private double energy;
     private double stamina;
 
-    public void setLife(double life) {
-        this.life = Math.clamp(life, 0, 100);
-    }
+    public void setLife(double life) {this.life = Math.clamp(life, 0, 100);}
+    public void setEnergy(double energy) {this.energy = Math.clamp(energy, 0, 100);}
+    public void setStamina(double stamina) {this.stamina = Math.clamp(stamina, 0, 100);}
 }

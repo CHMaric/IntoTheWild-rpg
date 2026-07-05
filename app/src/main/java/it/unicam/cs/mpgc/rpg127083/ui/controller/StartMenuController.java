@@ -4,13 +4,7 @@ import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
-
-import java.util.List;
-import java.util.Optional;
-
 
 public class StartMenuController {
     private final GameEngine gameEngine;
