@@ -53,4 +53,41 @@
       "staminaEffect": -10
     }
   }
+,
+  {
+    "stage": 4,
+    "description": "Una tempesta si avvicina al tuo rifugio.",
+    "actChoice": {
+      "description": "Decidi di rinforzare la tana.",
+      "outcomeDescription": "La tana resiste, ma ti affatichi molto.",
+      "lifeEffect": 0,
+      "energyEffect": -15,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di aspettare che la tempesta passi.",
+      "outcomeDescription": "La tana si allaga e i cuccioli soffrono il freddo.",
+      "lifeEffect": -15,
+      "energyEffect": -5,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 5,
+    "description": "Un branco di lupi si avvicina alla tana.",
+    "actChoice": {
+      "description": "Decidi di attirare i lupi lontano dalla tana.",
+      "outcomeDescription": "I cuccioli sono al sicuro, ma resti esausto.",
+      "lifeEffect": 0,
+      "energyEffect": -20,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di rimanere nascosto nella tana.",
+      "outcomeDescription": "I lupi trovano la tana e un cucciolo viene ferito.",
+      "lifeEffect": -20,
+      "energyEffect": -5,
+      "staminaEffect": 0
+    }
+  }
 ]

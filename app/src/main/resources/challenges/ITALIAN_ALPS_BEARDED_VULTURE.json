@@ -53,4 +53,41 @@
       "staminaEffect": -5
     }
   }
+,
+  {
+    "stage": 4,
+    "description": "Un forte vento minaccia il tuo nido.",
+    "actChoice": {
+      "description": "Decidi di rinforzare il nido.",
+      "outcomeDescription": "Il nido resiste, ma ti affatichi molto.",
+      "lifeEffect": 0,
+      "energyEffect": -15,
+      "staminaEffect": -10
+    },
+    "waitChoice": {
+      "description": "Decidi di non intervenire.",
+      "outcomeDescription": "Il vento danneggia il nido e alcune uova vengono perse.",
+      "lifeEffect": -15,
+      "energyEffect": 0,
+      "staminaEffect": 0
+    }
+  },
+  {
+    "stage": 5,
+    "description": "Un escursionista si avvicina al nido.",
+    "actChoice": {
+      "description": "Decidi di allontanarlo volando sopra di lui.",
+      "outcomeDescription": "L'escursionista si allontana, ma consumi molte energie.",
+      "lifeEffect": 0,
+      "energyEffect": -15,
+      "staminaEffect": -5
+    },
+    "waitChoice": {
+      "description": "Decidi di restare nascosto.",
+      "outcomeDescription": "L'escursionista disturba il nido prima di andare via.",
+      "lifeEffect": -10,
+      "energyEffect": 0,
+      "staminaEffect": 0
+    }
+  }
 ]
