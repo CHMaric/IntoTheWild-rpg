@@ -3,8 +3,9 @@ Progetto di Metodologie di Programmazione
 
 Questo progetto consiste in un'applicazione Java che implementa un gioco di ruolo di tipo testuale. Dopo aver scelto un habitat e l'animale da impersonare,
 il giocatore affronterà sfide personalizzate a scelta binaria di tipo fight or flight. Lo scopo è sopravvivere a tutte le sfide che la natura pone.
-L'intero progetto è strutturato per favorire manutenibilità ed estendibilità futura, con la possibilità di inserimento di nuovi habitat e animali annessi 
+L'intero progetto è strutturato per favorire manutenibilità ed estendibilità futura, con la possibilità di inserimento di nuovi habitat e animali annessi
 e nuove sfide.
+
 ---
 
 ## Come eseguire il progetto
@@ -32,11 +33,13 @@ e nuove sfide.
 - Possibilità di tornare ad Nido tra una sfida e l'altra per salvare o caricare partite di gioco.
 
 ## Architettura di Progetto
-Il progetto è suddiviso in tre macro packages principali: core, persistence, ui.
+L'architettura di progetto è basata sullo schema MVC.
+
+Il progetto è pertanto suddiviso in tre macro packages principali: core, persistence, ui.
 Sono presenti inoltre nella cartella resources: challenges, images, style, view.
 
 - core:
-    - machanics: classi contenenti le logiche di gioco.
+    - mechanics: classi contenenti le logiche di gioco.
     - model: package principale che contiene le entità di interesse
         - animals: classe astratta Animal + implementazioni
         - habitats: classe astratta Habitat + implementazioni
@@ -44,7 +47,7 @@ Sono presenti inoltre nella cartella resources: challenges, images, style, view.
           - factory: interfaccia Habitat factory + implementazioni e HabitatRegitry  
     - dto: package per record
 
-- peristence: classi per la peristenza
+- persistence: classi per la peristenza
 
   - interfaces: interfacce implementate dalle classi concrete per la persistenza
 
@@ -59,14 +62,14 @@ Resources:
 
 ---
 ## Progettazione strutturale
+Il progetto ha inoltre cercato di seguire per quanto possibile i principi SOLID e clean code.
 Nell'applicazione è stato fatto uso di design pattern (oggetto di studio del terzo anno) per favorire espandibilità e manutenibilità. In particolare:
 
-- Abtract Factory: permette la creazione di animali attinenti per ogni habitat. La classe HabitatRegistry è stata usata per mappare le implementazioni
+- Abstract Factory: permette la creazione di animali attinenti per ogni habitat. La classe HabitatRegistry è stata usata per mappare le implementazioni
 concrete di HabitatFactory e label corrispondente, evitando accoppiamento stretto con la GameEngine e supportando l'estensione futura di nuovi habitat.
 
 - Facade: la GameEngine funge da orchestratore principale della logica di gioco, coordinando la gestione del player, delle challenge, del salvataggio
 e del caricamento dello stato.
-Il progetto ha inoltre cercato di seguire per quanto possibile i principi SOLID e clean code.
 
 ## Persistenza dei dati
 Nel progetto si è scelto di peristere i dati attraverso JSON tramite libreria Gson. La separazione delle responsabilità di salvataggio, caricamento e 
