@@ -15,9 +15,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<StackPane stylesheets="@../style/AnimalSelectionStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane stylesheets="@../style/AnimalSelectionStyle.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url('@ItalianAlpsBackaground.jpg'); -fx-background-size: cover; -fx-background-position: center;;">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style=" -fx-background-size: cover; -fx-background-position: center;;">
          <center>
             <GridPane prefHeight="293.0" prefWidth="475.0" BorderPane.alignment="CENTER">
               <columnConstraints>

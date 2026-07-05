@@ -77,16 +77,16 @@
     "description": "Una tormenta rende difficile cacciare.",
     "actChoice": {
       "description": "Decidi di continuare la caccia.",
-      "outcomeDescription": "Trovi una preda, ma resti esausto.",
-      "lifeEffect": 0,
+      "outcomeDescription": "Non trovi prede e rischi l'assideramento.",
+      "lifeEffect": -30,
       "energyEffect": -10,
-      "staminaEffect": -15
+      "staminaEffect": -40
     },
     "waitChoice": {
       "description": "Decidi di aspettare che il tempo migliori.",
       "outcomeDescription": "Il branco soffre la fame.",
       "lifeEffect": -20,
-      "energyEffect": -20,
+      "energyEffect": -10,
       "staminaEffect": -10
     }
   }

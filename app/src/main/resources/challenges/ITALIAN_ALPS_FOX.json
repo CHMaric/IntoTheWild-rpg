@@ -78,7 +78,7 @@
     "actChoice": {
       "description": "Decidi di attirare i lupi lontano dalla tana.",
       "outcomeDescription": "I cuccioli sono al sicuro, ma resti esausto.",
-      "lifeEffect": 0,
+      "lifeEffect": -10,
       "energyEffect": -20,
       "staminaEffect": -10
     },

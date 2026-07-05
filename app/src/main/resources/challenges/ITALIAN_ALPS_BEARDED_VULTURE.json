@@ -5,14 +5,14 @@
     "actChoice": {
       "description": "Decidi di proteggere le uova dal freddo.",
       "outcomeDescription": "Riesci a proteggere le uova, ma consumi molte energie.",
-      "lifeEffect": 0,
+      "lifeEffect": -5,
       "energyEffect": -10,
-      "staminaEffect": -5
+      "staminaEffect": -15
     },
     "waitChoice": {
       "description": "Decidi di aspettare che il freddo passi.",
       "outcomeDescription": "Il freddo mette a rischio le uova e perdi energie nel tentativo di resistere.",
-      "lifeEffect": -5,
+      "lifeEffect": -10,
       "energyEffect": -5,
       "staminaEffect": 0
     }
@@ -23,7 +23,7 @@
     "actChoice": {
       "description": "Decidi di mangiare la carcassa per nutrirti.",
       "outcomeDescription": "Recuperi energie nutrendoti della carcassa.",
-      "lifeEffect": 0,
+      "lifeEffect": 10,
       "energyEffect": 20,
       "staminaEffect": 10
     },
@@ -31,8 +31,8 @@
       "description": "Decidi di aspettare per paura che il predatore torni.",
       "outcomeDescription": "Eviti il pericolo ma perdi una preziosa occasione per nutrirti.",
       "lifeEffect": 0,
-      "energyEffect": -10,
-      "staminaEffect": -5
+      "energyEffect": -15,
+      "staminaEffect": -10
     }
   },
   {
@@ -42,8 +42,8 @@
       "description": "Decidi di mangiare la carcassa abbattuta dagli umani.",
       "outcomeDescription": "Ti sei intossicato con il piombo.",
       "lifeEffect": -30,
-      "energyEffect": 25,
-      "staminaEffect": 5
+      "energyEffect": -15,
+      "staminaEffect": -15
     },
     "waitChoice": {
       "description": "Decidi di non mangiare dalla carcassa sospetta.",
@@ -65,11 +65,11 @@
       "staminaEffect": -10
     },
     "waitChoice": {
-      "description": "Decidi di non intervenire.",
+      "description": "Decidi di non intervenire e andare a caccia.",
       "outcomeDescription": "Il vento danneggia il nido e alcune uova vengono perse.",
-      "lifeEffect": -15,
-      "energyEffect": 0,
-      "staminaEffect": 0
+      "lifeEffect": 20,
+      "energyEffect": -10,
+      "staminaEffect": 10
     }
   },
   {
@@ -79,14 +79,14 @@
       "description": "Decidi di allontanarlo volando sopra di lui.",
       "outcomeDescription": "L'escursionista si allontana, ma consumi molte energie.",
       "lifeEffect": 0,
-      "energyEffect": -15,
+      "energyEffect": -5,
       "staminaEffect": -5
     },
     "waitChoice": {
       "description": "Decidi di restare nascosto.",
       "outcomeDescription": "L'escursionista disturba il nido prima di andare via.",
-      "lifeEffect": -10,
-      "energyEffect": 0,
+      "lifeEffect": 0,
+      "energyEffect": -10,
       "staminaEffect": 0
     }
   }
