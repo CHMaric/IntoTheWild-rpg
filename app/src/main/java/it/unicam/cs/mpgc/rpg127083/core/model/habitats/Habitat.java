@@ -6,14 +6,13 @@ import java.util.Set;
 
 @Getter
 public abstract class Habitat {
-    private long id;
-    private String label;
+    private final long id;
+    private final String label;
+    private final Set<AnimalType> availableAnimalTypes;
 
-    public Habitat(long id, String label) {
+    public Habitat(long id, String label, Set<AnimalType> availableAnimalTypes) {
         this.id = id;
         this.label = label;
+        this.availableAnimalTypes = Set.copyOf(availableAnimalTypes);
     }
-
-    public abstract Set<AnimalType> getAvailableAnimalTypes();
-
 }
