@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.AnimalType;
 import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
+import java.util.Set;
 
 /**
  * This interface allows for future extensions of the game's habitats and animals.
@@ -11,4 +12,5 @@ import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 public interface HabitatFactory {
     Habitat createHabitat();
     Animal createAnimal(AnimalType animalType);
+    Set<AnimalType> getSupportedAnimalTypes();
 }
