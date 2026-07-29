@@ -17,16 +17,15 @@ public class ItalianAlpsFactory implements HabitatFactory{
     }
 
     private void registerAnimals() {
-        Habitat h = createHabitat();
-        animalRegistry.put(AnimalType.FOX, () -> new Fox(0,AnimalType.FOX,h,85,80,75));
-        animalRegistry.put(AnimalType.WOLF, () -> new Wolf(1,AnimalType.WOLF,h,100,100,100));
-        animalRegistry.put(AnimalType.HARE, () -> new Hare(2, AnimalType.HARE, h, 50, 90, 70));
-        animalRegistry.put(AnimalType.BEARDED_VULTURE, () -> new BeardedVulture(3, AnimalType.BEARDED_VULTURE, h, 90, 70, 80));
+        animalRegistry.put(AnimalType.FOX, () -> new Fox(0,AnimalType.FOX,createHabitat(),85,80,75));
+        animalRegistry.put(AnimalType.WOLF, () -> new Wolf(1,AnimalType.WOLF,createHabitat(),100,100,100));
+        animalRegistry.put(AnimalType.HARE, () -> new Hare(2, AnimalType.HARE, createHabitat(), 50, 90, 70));
+        animalRegistry.put(AnimalType.BEARDED_VULTURE, () -> new BeardedVulture(3, AnimalType.BEARDED_VULTURE, createHabitat(), 90, 70, 80));
     }
 
     @Override
     public Habitat createHabitat() {
-        return new ItalianAlps();
+        return new ItalianAlps(animalRegistry.keySet());
     }
 
     @Override
