@@ -12,6 +12,13 @@ public class HabitatSelectionController {
 
     @FXML
     private Button alpsButton;
+    @FXML
+    private Button savanaButton;
+    @FXML
+    private Button tundraButton;
+    @FXML
+    private Button jungleButton;
+
 
     public HabitatSelectionController(GameEngine gameEngine, SceneManager sceneManager) {
         this.gameEngine = gameEngine;
@@ -20,10 +27,14 @@ public class HabitatSelectionController {
 
     @FXML
     public void initialize() {
-        alpsButton.setOnAction(event -> selectHabitat("ITALIAN_ALPS"));
+        alpsButton.setOnAction(event -> selectAlpsHabitat("ITALIAN_ALPS"));
+        //for future expansions with new habitats, modify below with setOnAction + private methods to handle event
+        savanaButton.setDisable(true);
+        jungleButton.setDisable(true);
+        tundraButton.setDisable(true);
     }
 
-    private void selectHabitat(String habitat) {
+    private void selectAlpsHabitat(String habitat) {
         AnimalSelectionController animalController = new AnimalSelectionController(gameEngine, sceneManager, habitat);
         sceneManager.switchScene("/view/AnimalSelectionView.fxml", animalController);
     }
