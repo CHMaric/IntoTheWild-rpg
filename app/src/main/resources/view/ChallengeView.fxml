@@ -10,15 +10,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="503.0" stylesheets="@../style/ChallengeStyle.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="503.0" stylesheets="@../style/ChallengeStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane>
          <top>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Label contentDisplay="RIGHT" text="Vita">
                      <graphic>
-                        <ProgressBar fx:id="lifeBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <ProgressBar fx:id="lifeBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                              <Label fx:id="lifeBarLabel" />
+                           </children>
+                        </HBox>
                      </graphic>
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
@@ -26,7 +31,12 @@
                   </Label>
                   <Label contentDisplay="RIGHT" text="Energia">
                      <graphic>
-                        <ProgressBar fx:id="energyBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <ProgressBar fx:id="energyBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                              <Label fx:id="energyBarLabel" />
+                           </children>
+                        </HBox>
                      </graphic>
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
@@ -34,11 +44,24 @@
                   </Label>
                   <Label contentDisplay="RIGHT" text="Stamina">
                      <graphic>
-                        <ProgressBar fx:id="staminaBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <ProgressBar fx:id="staminaBar" prefHeight="10.0" prefWidth="80.0" progress="0.0" />
+                              <Label fx:id="staminaBarLabel" />
+                           </children>
+                        </HBox>
                      </graphic>
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="cubsLabel" contentDisplay="RIGHT" layoutX="312.0" layoutY="48.0" text="Prole:">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                     <graphic>
+                        <Label fx:id="cubsCounterLabel" />
+                     </graphic>
                   </Label>
                </children>
                <padding>
@@ -114,20 +137,24 @@
             </VBox>
          </right>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="180.0" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="nestButton" alignment="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="134.0" text="Torna al Nido">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="nextChallengeButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="142.0" text="Prossima Sfida">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Button>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="180.0">
+                     <children>
+                        <Button fx:id="nestButton" alignment="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="134.0" text="Torna al Nido">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="nextChallengeButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="142.0" text="Prossima Sfida">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </bottom>
       </BorderPane>
    </children>

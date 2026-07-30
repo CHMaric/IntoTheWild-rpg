@@ -5,8 +5,8 @@ import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 
 public class Wolf extends Animal{
     public Wolf(long id, AnimalType type, Habitat habitat, double life, double energy,
-                double stamina) {
-        super(id, type, habitat, life, energy, stamina);
+                double stamina, int cubs) {
+        super(id, type, habitat, life, energy, stamina, cubs);
     }
 
 }

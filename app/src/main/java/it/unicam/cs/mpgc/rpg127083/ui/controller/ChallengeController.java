@@ -1,13 +1,19 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.Choice;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameState;
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class ChallengeController {
     private final GameEngine gameEngine;
@@ -38,6 +44,16 @@ public class ChallengeController {
     private Label actLabel;
     @FXML
     private Label waitLabel;
+    @FXML
+    private Label lifeBarLabel;
+    @FXML
+    private Label energyBarLabel;
+    @FXML
+    private Label staminaBarLabel;
+    @FXML
+    private Label cubsLabel;
+    @FXML
+    private Label cubsCounterLabel;
 
 
     public ChallengeController(GameEngine gameEngine, SceneManager sceneManager) {
@@ -71,11 +87,52 @@ public class ChallengeController {
     }
 
     private void handleWaitChoice() {
+        Challenge current = gameEngine.getCurrentChallenge();
+        if(current != null){
+            Choice choice = current.getWaitChoice();
+            animateStatsUpdate(choice.getLifeEffect(), choice.getEnergyEffect(),
+                    choice.getStaminaEffect(), choice.getCubsEffect());
+        }
         showChoiceOutcome(gameEngine.executeWaitChoice());
     }
 
     private void handleActChoice() {
+        Challenge current = gameEngine.getCurrentChallenge();
+        if(current != null){
+            Choice choice = current.getActChoice();
+            animateStatsUpdate(choice.getLifeEffect(), choice.getEnergyEffect(),
+                    choice.getStaminaEffect(), choice.getCubsEffect());
+        }
         showChoiceOutcome(gameEngine.executeActChoice());;
+    }
+    private void animateStatsUpdate(double lifeEffect, double energyEffect, double staminaEffect, int cubsEffect) {
+        updateSingleLabel(lifeBarLabel, lifeEffect);
+        updateSingleLabel(energyBarLabel, energyEffect);
+        updateSingleLabel(staminaBarLabel, staminaEffect);
+        updateSingleLabel(cubsCounterLabel, cubsEffect);
+    }
+    private void updateSingleLabel(Label label, double effect){
+        if(label == null) return;
+        formatTextLabelEffect(label, effect);
+        handleFadeTransition(label);
+    }
+    private void formatTextLabelEffect(Label label, double effect){
+        String text = (effect >= 0 ? "+" : "") + (int) effect;
+        label.setText(text);
+        if (effect >= 0)
+            label.setTextFill(Color.web("#87CEEB"));
+        else
+            label.setTextFill(Color.web("#e74c3c"));
+    }
+
+    private void handleFadeTransition(Label label) {
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.30));
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.40), label);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        SequentialTransition sequence = new SequentialTransition(pause, fade);
+        sequence.setOnFinished(e -> label.setText(""));
+        sequence.play();
     }
 
     private void updateChallengeUI(){
@@ -96,7 +153,9 @@ public class ChallengeController {
         lifeBar.setProgress(animal.getLife() / 100.0);
         energyBar.setProgress(animal.getEnergy() / 100.0);
         staminaBar.setProgress(animal.getStamina() / 100.0);
+        cubsLabel.setText("Prole: "+ animal.getCubs());
     }
+
 
     private void resetScreen() {
         outcomeLabel.setVisible(false);

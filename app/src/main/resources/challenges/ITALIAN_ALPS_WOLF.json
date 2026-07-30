@@ -50,7 +50,8 @@
       "outcomeDescription": "La coppia alfa è stata sconfitta. Sopravvivi ma perdi il territorio.",
       "lifeEffect": -10,
       "energyEffect": -20,
-      "staminaEffect": -15
+      "staminaEffect": -15,
+      "cubsEffect": -2
     }
   }
 ,
@@ -60,16 +61,17 @@
     "actChoice": {
       "description": "Decidi di cercarlo.",
       "outcomeDescription": "Ritrovi il cucciolo, ma consumi molte energie.",
-      "lifeEffect": 10,
-      "energyEffect": -20,
-      "staminaEffect": -10
+      "lifeEffect": -10,
+      "energyEffect": -30,
+      "staminaEffect": -20
     },
     "waitChoice": {
       "description": "Decidi di non allontanarti dal branco.",
       "outcomeDescription": "Il cucciolo viene catturato da un predatore.",
       "lifeEffect": -25,
       "energyEffect": -5,
-      "staminaEffect": -5
+      "staminaEffect": -5,
+      "cubsEffect": -1
     }
   },
   {
@@ -87,7 +89,8 @@
       "outcomeDescription": "Il branco soffre la fame.",
       "lifeEffect": -20,
       "energyEffect": -10,
-      "staminaEffect": -10
+      "staminaEffect": -10,
+      "cubsEffect": -1
     }
   }
 ]
