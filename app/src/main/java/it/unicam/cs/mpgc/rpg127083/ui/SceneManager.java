@@ -1,8 +1,5 @@
 package it.unicam.cs.mpgc.rpg127083.ui;
 
-import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.ui.controller.NestController;
-import it.unicam.cs.mpgc.rpg127083.ui.controller.StartMenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,15 +25,6 @@ public class SceneManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void switchToStartMenu(GameEngine gameEngine){
-        StartMenuController startMenuController = new StartMenuController(gameEngine, this);
-        switchScene("/view/StartMenuView.fxml", startMenuController);
-    }
-    public void switchToNest(GameEngine gameEngine){
-        NestController nestController = new NestController(gameEngine, this);
-        switchScene("/view/NestView.fxml", nestController);
     }
 }
 

@@ -7,13 +7,13 @@ import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
 import it.unicam.cs.mpgc.rpg127083.core.util.StatAnimationHelper;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class ChallengeController {
     private final GameEngine gameEngine;
-    private final SceneManager sceneManager;
+    private final NavigationManager navigationManager;
 
     @FXML
     private Button actButton;
@@ -51,9 +51,9 @@ public class ChallengeController {
     private Label cubsCounterLabel;
 
 
-    public ChallengeController(GameEngine gameEngine, SceneManager sceneManager) {
+    public ChallengeController(GameEngine gameEngine, NavigationManager navigationManager) {
         this.gameEngine = gameEngine;
-        this.sceneManager = sceneManager;
+        this.navigationManager = navigationManager;
     }
 
     @FXML
@@ -86,11 +86,13 @@ public class ChallengeController {
         showChoiceOutcome(gameEngine.executeActChoice());
     }
 
-    private void backToNest() {sceneManager.switchToNest(gameEngine);}
+    private void backToNest() {
+        navigationManager.goToNest();}
 
     private void nextChallenge() {updateChallengeUI();}
 
-    private void handleEnding() {sceneManager.switchToStartMenu(gameEngine);}
+    private void handleEnding() {
+        navigationManager.goToStartMenu();}
 
     private void animateStatsUpdate(double lifeEffect, double energyEffect, double staminaEffect, int cubsEffect) {
         StatAnimationHelper.animateSingleLabel(lifeBarLabel, lifeEffect);

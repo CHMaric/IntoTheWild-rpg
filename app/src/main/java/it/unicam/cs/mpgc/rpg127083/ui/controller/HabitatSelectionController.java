@@ -1,14 +1,14 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 
 public class HabitatSelectionController {
     private final GameEngine gameEngine;
-    private final SceneManager sceneManager;
+    private final NavigationManager navigationManager;
 
     @FXML
     private Button alpsButton;
@@ -20,22 +20,18 @@ public class HabitatSelectionController {
     private Button jungleButton;
 
 
-    public HabitatSelectionController(GameEngine gameEngine, SceneManager sceneManager) {
+    public HabitatSelectionController(GameEngine gameEngine, NavigationManager navigationManager) {
         this.gameEngine = gameEngine;
-        this.sceneManager = sceneManager;
+        this.navigationManager = navigationManager;
     }
 
     @FXML
     public void initialize() {
-        alpsButton.setOnAction(event -> selectAlpsHabitat("ITALIAN_ALPS"));
-        //for future expansions with new habitats, modify below with setOnAction + private methods to handle event
+        alpsButton.setOnAction(event -> navigationManager.goToAnimalSelection("ITALIAN_ALPS"));
+
+        //for future expansions with new habitats, modify below with setOnAction
         savanaButton.setDisable(true);
         jungleButton.setDisable(true);
         tundraButton.setDisable(true);
-    }
-
-    private void selectAlpsHabitat(String habitat) {
-        AnimalSelectionController animalController = new AnimalSelectionController(gameEngine, sceneManager, habitat);
-        sceneManager.switchScene("/view/AnimalSelectionView.fxml", animalController);
     }
 }

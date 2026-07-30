@@ -2,13 +2,13 @@ package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class NestController {
     private final GameEngine gameEngine;
-    private final SceneManager sceneManager;
+    private final NavigationManager navigationManager;
 
     @FXML
     private Button saveButton;
@@ -31,37 +31,24 @@ public class NestController {
     @FXML
     private Button escButton;
 
-    public NestController(GameEngine gameEngine, SceneManager sceneManager) {
+    public NestController(GameEngine gameEngine, NavigationManager navigationManager) {
         this.gameEngine = gameEngine;
-        this.sceneManager = sceneManager;
+        this.navigationManager = navigationManager;
     }
 
     @FXML
     public void initialize(){
         saveButton.setOnAction(event -> handleSave());
-        loadButton.setOnAction(event -> handleLoad());
-        challengeButton.setOnAction(event -> {
-            ChallengeController challengeController = new ChallengeController(gameEngine, sceneManager);
-            sceneManager.switchScene("/view/ChallengeView.fxml", challengeController);
-        });
+        loadButton.setOnAction(event -> navigationManager.goToSaves(true));
+        challengeButton.setOnAction(event -> navigationManager.goToChallenge());
+        escButton.setOnAction(event -> navigationManager.goToStartMenu());
         showStats();
-        escButton.setOnAction(event -> handleExit());
     }
     private void handleSave(){
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Salva Partita");
         dialog.setHeaderText("Inserisci nome slot:");
         dialog.showAndWait().ifPresent(gameEngine::saveGame);
-    }
-
-    private void handleLoad() {
-        SavesController savesController = new SavesController(sceneManager, gameEngine, true);
-        sceneManager.switchScene("/view/SavesView.fxml", savesController);
-    }
-
-    private void handleExit(){
-        StartMenuController startMenu = new StartMenuController(gameEngine, sceneManager);
-        sceneManager.switchScene("/view/StartMenuView.fxml", startMenu);
     }
 
     private void showStats(){
