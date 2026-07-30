@@ -54,7 +54,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="habitatLabel" layoutX="292.0" layoutY="200.0" text="Habitat">
+                  <Label fx:id="cubsLabel" layoutX="292.0" layoutY="200.0" text="Prole">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>

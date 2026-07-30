@@ -14,6 +14,7 @@ public class SaveData {
     private double life;
     private double energy;
     private double stamina;
+    private int cubs;
     private int currentStage;
 
     public SaveData(Animal player, int currentStage) {
@@ -23,6 +24,7 @@ public class SaveData {
         this.life = player.getLife();
         this.energy = player.getEnergy();
         this.stamina = player.getStamina();
+        this.cubs = player.getCubs();
         this.currentStage = currentStage;
     }
     public void restorePlayerState(Animal player) {
@@ -30,5 +32,6 @@ public class SaveData {
         player.setLife(this.life);
         player.setEnergy(this.energy);
         player.setStamina(this.stamina);
+        player.setCubs(this.cubs);
     }
 }

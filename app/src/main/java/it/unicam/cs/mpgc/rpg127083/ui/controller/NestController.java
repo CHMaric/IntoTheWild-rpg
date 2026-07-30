@@ -2,13 +2,13 @@ package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class NestController {
     private final GameEngine gameEngine;
-    private final SceneManager sceneManager;
+    private final NavigationManager navigationManager;
 
     @FXML
     private Button saveButton;
@@ -25,43 +25,30 @@ public class NestController {
     @FXML
     private Label animalTypeLabel;
     @FXML
-    private Label habitatLabel;
+    private Label cubsLabel;
     @FXML
     private Label lastChallenge;
     @FXML
     private Button escButton;
 
-    public NestController(GameEngine gameEngine, SceneManager sceneManager) {
+    public NestController(GameEngine gameEngine, NavigationManager navigationManager) {
         this.gameEngine = gameEngine;
-        this.sceneManager = sceneManager;
+        this.navigationManager = navigationManager;
     }
 
     @FXML
     public void initialize(){
         saveButton.setOnAction(event -> handleSave());
-        loadButton.setOnAction(event -> handleLoad());
-        challengeButton.setOnAction(event -> {
-            ChallengeController challengeController = new ChallengeController(gameEngine, sceneManager);
-            sceneManager.switchScene("/view/ChallengeView.fxml", challengeController);
-        });
+        loadButton.setOnAction(event -> navigationManager.goToSaves(true));
+        challengeButton.setOnAction(event -> navigationManager.goToChallenge());
+        escButton.setOnAction(event -> navigationManager.goToStartMenu());
         showStats();
-        escButton.setOnAction(event -> handleExit());
     }
     private void handleSave(){
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Salva Partita");
         dialog.setHeaderText("Inserisci nome slot:");
         dialog.showAndWait().ifPresent(gameEngine::saveGame);
-    }
-
-    private void handleLoad() {
-        SavesController savesController = new SavesController(sceneManager, gameEngine, true);
-        sceneManager.switchScene("/view/SavesView.fxml", savesController);
-    }
-
-    private void handleExit(){
-        StartMenuController startMenu = new StartMenuController(gameEngine, sceneManager);
-        sceneManager.switchScene("/view/StartMenuView.fxml", startMenu);
     }
 
     private void showStats(){
@@ -71,7 +58,7 @@ public class NestController {
         energyBar.setProgress(player.getEnergy() / 100.0);
         staminaBar.setProgress(player.getStamina() / 100.0);
         animalTypeLabel.setText("Animale: " + player.getType());
-        habitatLabel.setText("Habitat: " + player.getHabitat().getLabel());
+        cubsLabel.setText("Prole: " + player.getCubs());
         lastChallenge.setText("Stage: " + gameEngine.getCurrentStage());
     }
 }

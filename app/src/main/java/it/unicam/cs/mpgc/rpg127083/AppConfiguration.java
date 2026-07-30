@@ -9,6 +9,7 @@ import it.unicam.cs.mpgc.rpg127083.persistence.JsonSaveManager;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.ChallengeLoader;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService;
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.SaveManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
 import it.unicam.cs.mpgc.rpg127083.ui.controller.StartMenuController;
 import javafx.application.Application;
@@ -26,8 +27,8 @@ public class AppConfiguration  extends Application {
             GameEngine gameEngine = new GameEngine(null, challengeLoader,
                             persistenceService, habitatRegistry);
             SceneManager sceneManager = new SceneManager(primaryStage);
-            StartMenuController startMenuController = new StartMenuController(gameEngine, sceneManager);
+            NavigationManager navigationManager = new NavigationManager(gameEngine, sceneManager);
             primaryStage.setTitle("Into The Wild");
-            sceneManager.switchScene("/view/StartMenuView.fxml", startMenuController);
+            navigationManager.goToStartMenu();
     }
 }

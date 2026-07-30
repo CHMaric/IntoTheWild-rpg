@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -9,7 +9,7 @@ import javafx.scene.control.ComboBox;
 import java.util.List;
 
 public class SavesController {
-    private final SceneManager sceneManager;
+    private final NavigationManager navigationManager;
     private final GameEngine gameEngine;
     private final boolean fromGame;
 
@@ -23,8 +23,8 @@ public class SavesController {
     private ComboBox<String> savesComboBox;
 
 
-    public SavesController(SceneManager sceneManager, GameEngine gameEngine, boolean fromGame) {
-        this.sceneManager = sceneManager;
+    public SavesController(NavigationManager navigationManager, GameEngine gameEngine, boolean fromGame) {
+        this.navigationManager = navigationManager;
         this.gameEngine = gameEngine;
         this.fromGame = fromGame;
     }
@@ -45,14 +45,10 @@ public class SavesController {
     }
 
     private void handleGoBack() {
-        if(fromGame) {
-            NestController nestController = new NestController(gameEngine, sceneManager);
-            sceneManager.switchScene("/view/NestView.fxml", nestController);
-        }
-        else {
-            StartMenuController startMenuController = new StartMenuController(gameEngine, sceneManager);
-            sceneManager.switchScene("/view/StartMenuView.fxml", startMenuController);
-        }
+        if(fromGame)
+            navigationManager.goToNest();
+        else
+            navigationManager.goToStartMenu();
     }
 
     private void handleDelete() {
@@ -79,8 +75,7 @@ public class SavesController {
         }
         boolean success = gameEngine.loadGame(slotName);
         if (success) {
-            NestController nestController = new NestController(gameEngine, sceneManager);
-            sceneManager.switchScene("/view/NestView.fxml", nestController);
+            navigationManager.goToNest();
         } else
             showAlert(Alert.AlertType.ERROR, "Impossibile caricare il file: " + slotName);
     }

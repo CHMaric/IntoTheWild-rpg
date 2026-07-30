@@ -2,13 +2,13 @@ package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.AnimalType;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class AnimalSelectionController {
     private final GameEngine gameEngine;
-    private final SceneManager sceneManager;
+    private final NavigationManager navigationManager;
     private final String selectedHabitat;
 
     @FXML
@@ -20,9 +20,9 @@ public class AnimalSelectionController {
     @FXML
     private Button vultureButton;
 
-    public AnimalSelectionController(GameEngine gameEngine, SceneManager sceneManager, String selectedHabitat) {
+    public AnimalSelectionController(GameEngine gameEngine, NavigationManager navigationManager, String selectedHabitat) {
         this.gameEngine = gameEngine;
-        this.sceneManager = sceneManager;
+        this.navigationManager = navigationManager;
         this.selectedHabitat = selectedHabitat;
     }
 
@@ -37,8 +37,6 @@ public class AnimalSelectionController {
     private void startGame(AnimalType animalType) {
         gameEngine.initializeHabitat(selectedHabitat);
         gameEngine.startGame(animalType);
-        ChallengeController challengeController = new ChallengeController(gameEngine, sceneManager);
-        sceneManager.switchScene("/view/ChallengeView.fxml", challengeController);
+        navigationManager.goToChallenge();
     }
-
 }

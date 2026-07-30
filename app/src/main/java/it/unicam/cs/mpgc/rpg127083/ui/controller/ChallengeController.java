@@ -1,18 +1,19 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
+import it.unicam.cs.mpgc.rpg127083.core.mechanics.Choice;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameState;
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
-import it.unicam.cs.mpgc.rpg127083.ui.SceneManager;
+import it.unicam.cs.mpgc.rpg127083.core.util.StatAnimationHelper;
+import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class ChallengeController {
     private final GameEngine gameEngine;
-    private final SceneManager sceneManager;
-
+    private final NavigationManager navigationManager;
 
     @FXML
     private Button actButton;
@@ -38,11 +39,21 @@ public class ChallengeController {
     private Label actLabel;
     @FXML
     private Label waitLabel;
+    @FXML
+    private Label lifeBarLabel;
+    @FXML
+    private Label energyBarLabel;
+    @FXML
+    private Label staminaBarLabel;
+    @FXML
+    private Label cubsLabel;
+    @FXML
+    private Label cubsCounterLabel;
 
 
-    public ChallengeController(GameEngine gameEngine, SceneManager sceneManager) {
+    public ChallengeController(GameEngine gameEngine, NavigationManager navigationManager) {
         this.gameEngine = gameEngine;
-        this.sceneManager = sceneManager;
+        this.navigationManager = navigationManager;
     }
 
     @FXML
@@ -55,27 +66,39 @@ public class ChallengeController {
         backToMenu.setOnAction(event -> handleEnding());
     }
 
-    private void handleEnding() {
-        StartMenuController startMenu =
-                new StartMenuController(gameEngine, sceneManager);
-        sceneManager.switchScene("/view/StartMenuView.fxml", startMenu);
-    }
-
-    private void nextChallenge() {
-        updateChallengeUI();
-    }
-
-    private void backToNest() {
-        NestController nestController = new NestController(gameEngine, sceneManager);
-        sceneManager.switchScene("/view/NestView.fxml", nestController);
-    }
-
     private void handleWaitChoice() {
+        Challenge current = gameEngine.getCurrentChallenge();
+        if(current != null){
+            Choice choice = current.getWaitChoice();
+            animateStatsUpdate(choice.getLifeEffect(), choice.getEnergyEffect(),
+                    choice.getStaminaEffect(), choice.getCubsEffect());
+        }
         showChoiceOutcome(gameEngine.executeWaitChoice());
     }
 
     private void handleActChoice() {
-        showChoiceOutcome(gameEngine.executeActChoice());;
+        Challenge current = gameEngine.getCurrentChallenge();
+        if(current != null){
+            Choice choice = current.getActChoice();
+            animateStatsUpdate(choice.getLifeEffect(), choice.getEnergyEffect(),
+                    choice.getStaminaEffect(), choice.getCubsEffect());
+        }
+        showChoiceOutcome(gameEngine.executeActChoice());
+    }
+
+    private void backToNest() {
+        navigationManager.goToNest();}
+
+    private void nextChallenge() {updateChallengeUI();}
+
+    private void handleEnding() {
+        navigationManager.goToStartMenu();}
+
+    private void animateStatsUpdate(double lifeEffect, double energyEffect, double staminaEffect, int cubsEffect) {
+        StatAnimationHelper.animateSingleLabel(lifeBarLabel, lifeEffect);
+        StatAnimationHelper.animateSingleLabel(energyBarLabel, energyEffect);
+        StatAnimationHelper.animateSingleLabel(staminaBarLabel, staminaEffect);
+        StatAnimationHelper.animateSingleLabel(cubsCounterLabel, cubsEffect);
     }
 
     private void updateChallengeUI(){
@@ -93,10 +116,14 @@ public class ChallengeController {
 
     private void updateStats() {
         Animal animal = gameEngine.getPlayer();
-        lifeBar.setProgress(animal.getLife() / 100.0);
-        energyBar.setProgress(animal.getEnergy() / 100.0);
-        staminaBar.setProgress(animal.getStamina() / 100.0);
+        if(animal != null) {
+            lifeBar.setProgress(animal.getLife() / 100.0);
+            energyBar.setProgress(animal.getEnergy() / 100.0);
+            staminaBar.setProgress(animal.getStamina() / 100.0);
+            cubsLabel.setText("Prole: " + animal.getCubs());
+        }
     }
+
 
     private void resetScreen() {
         outcomeLabel.setVisible(false);
@@ -153,10 +180,8 @@ public class ChallengeController {
 
     private void showWin(String s){
         challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
-        if(s.equals(null))
-            outcomeLabel.setText("La natura non ti ha sopraffatto");
-        else
-            outcomeLabel.setText(s + "\nLa natura non ti ha sopraffatto");
+        String detail = s != null ? s + "\n" : "";
+        outcomeLabel.setText(detail + "La natura non ti ha sopraffatto");;
         freezeButtons();
     }
 }

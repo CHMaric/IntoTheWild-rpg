@@ -3,18 +3,20 @@
     "stage": 1,
     "description": "Le uova sono sensibili al freddo.",
     "actChoice": {
-      "description": "Decidi di proteggere le uova dal freddo.",
-      "outcomeDescription": "Riesci a proteggere le uova, ma consumi molte energie.",
-      "lifeEffect": -5,
-      "energyEffect": -10,
-      "staminaEffect": -15
+      "description": "Decidi di lasciare il nido in cerca di cibo.",
+      "outcomeDescription": "Trovi del cibo ma perdi una delle tue uova.",
+      "lifeEffect": 10,
+      "energyEffect": 5,
+      "staminaEffect": -15,
+      "cubsEffect": -1
     },
     "waitChoice": {
       "description": "Decidi di aspettare che il freddo passi.",
       "outcomeDescription": "Il freddo mette a rischio le uova e perdi energie nel tentativo di resistere.",
       "lifeEffect": -10,
-      "energyEffect": -5,
-      "staminaEffect": 0
+      "energyEffect": -10,
+      "staminaEffect": -10,
+      "cubsEffect": 0
     }
   },
   {
@@ -69,7 +71,8 @@
       "outcomeDescription": "Il vento danneggia il nido e alcune uova vengono perse.",
       "lifeEffect": 20,
       "energyEffect": -10,
-      "staminaEffect": 10
+      "staminaEffect": 10,
+      "cubsEffect": -2
     }
   },
   {

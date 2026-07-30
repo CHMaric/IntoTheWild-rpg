@@ -32,7 +32,8 @@
       "outcomeDescription": "Non sei stato scoperto, ma hai perso parte della tua prole.",
       "lifeEffect": -15,
       "energyEffect": -5,
-      "staminaEffect": -5
+      "staminaEffect": -5,
+      "cubsEffect": -2
     }
   },
   {
@@ -43,14 +44,16 @@
       "outcomeDescription": "Sopravvivi, ma perdi la prole.",
       "lifeEffect": 0,
       "energyEffect": -10,
-      "staminaEffect": 0
+      "staminaEffect": 0,
+      "cubsEffect": -3
     },
     "waitChoice": {
       "description": "Decidi di rimanere nel nido con la tua prole",
       "outcomeDescription": "Proteggi la prole mettendo a rischio la tua vita.",
       "lifeEffect": -70,
       "energyEffect": -20,
-      "staminaEffect": -10
+      "staminaEffect": -10,
+      "cubsEffect": -2
     }
   }
 ,
@@ -62,14 +65,16 @@
       "outcomeDescription": "Trovi cibo, ma consumi molte energie.",
       "lifeEffect": 20,
       "energyEffect": -10,
-      "staminaEffect": -10
+      "staminaEffect": -10,
+      "cubsEffect": 1
     },
     "waitChoice": {
       "description": "Decidi di rimanere vicino ai piccoli.",
       "outcomeDescription": "Resti al sicuro, ma la fame aumenta.",
       "lifeEffect": 0,
       "energyEffect": -15,
-      "staminaEffect": -10
+      "staminaEffect": -10,
+      "cubsEffect": 1
     }
   },
   {
@@ -87,7 +92,8 @@
       "outcomeDescription": "La volpe trova uno dei leveretti.",
       "lifeEffect": -20,
       "energyEffect": -15,
-      "staminaEffect": 0
+      "staminaEffect": 0,
+      "cubsEffect": -1
     }
   }
 ]
