@@ -25,7 +25,7 @@ public class NestController {
     @FXML
     private Label animalTypeLabel;
     @FXML
-    private Label habitatLabel;
+    private Label cubsLabel;
     @FXML
     private Label lastChallenge;
     @FXML
@@ -71,7 +71,7 @@ public class NestController {
         energyBar.setProgress(player.getEnergy() / 100.0);
         staminaBar.setProgress(player.getStamina() / 100.0);
         animalTypeLabel.setText("Animale: " + player.getType());
-        habitatLabel.setText("Habitat: " + player.getHabitat().getLabel());
+        cubsLabel.setText("Prole: " + player.getCubs());
         lastChallenge.setText("Stage: " + gameEngine.getCurrentStage());
     }
 }

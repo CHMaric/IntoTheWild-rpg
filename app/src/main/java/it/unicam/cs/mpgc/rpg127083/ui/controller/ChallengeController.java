@@ -15,7 +15,6 @@ public class ChallengeController {
     private final GameEngine gameEngine;
     private final SceneManager sceneManager;
 
-
     @FXML
     private Button actButton;
     @FXML
