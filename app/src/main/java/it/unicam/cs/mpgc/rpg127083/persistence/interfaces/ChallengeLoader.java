@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg127083.persistence.interfaces;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
 import it.unicam.cs.mpgc.rpg127083.core.model.habitats.Habitat;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Interface for loading challenges from a data source.
@@ -11,4 +12,7 @@ import java.util.List;
  */
 public interface ChallengeLoader {
     List<Challenge> loadChallengesForAnimal(Habitat habitat, String animalType);
+    default CompletableFuture<List<Challenge>> loadChallengesForAnimalAsync(Habitat habitat, String animalType){
+        return CompletableFuture.supplyAsync(() -> loadChallengesForAnimal(habitat, animalType));
+    }
 }

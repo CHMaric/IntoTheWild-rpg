@@ -1,13 +1,14 @@
-package it.unicam.cs.mpgc.rpg127083.ui;
+package it.unicam.cs.mpgc.rpg127083.ui.navigation;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class SceneManager {
     private final Stage primaryStage;
-    private Scene scene;
+
 
     public SceneManager(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -19,11 +20,14 @@ public class SceneManager {
             if (controller != null)
                 loader.setController(controller);
             Parent root = loader.load();
-            scene = new Scene(root, 800, 600);
-            primaryStage.setScene(scene);
+            if (primaryStage.getScene() == null) {
+                primaryStage.setScene(new Scene(root, 800, 600));
+            } else {
+                primaryStage.getScene().setRoot(root);
+            }
             primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new IllegalStateException("Impossibile caricare la vista FXML: " + fxmlPath, e);
         }
     }
 }

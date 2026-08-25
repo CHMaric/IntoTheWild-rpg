@@ -2,7 +2,8 @@ package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
-import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
+import it.unicam.cs.mpgc.rpg127083.ui.util.FxAsync;
+import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -48,7 +49,24 @@ public class NestController {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Salva Partita");
         dialog.setHeaderText("Inserisci nome slot:");
-        dialog.showAndWait().ifPresent(gameEngine::saveGame);
+
+        dialog.showAndWait().ifPresent(slotName -> {
+            if (slotName.isBlank()) return;
+
+            FxAsync.execute(
+                    gameEngine.saveGameAsync(slotName),
+                    () -> showInfoAlert("Salvataggio", "Partita salvata con successo!"),
+                    ex -> FxAsync.showErrorAlert("Errore Salvataggio", ex)
+            );
+        });
+    }
+
+    private void showInfoAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     private void showStats(){

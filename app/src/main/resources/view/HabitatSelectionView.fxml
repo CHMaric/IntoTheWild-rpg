@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -62,12 +62,12 @@
               </rowConstraints>
                <children>
       
-                  <Button fx:id="alpsButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Alpi Italiane" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="alpsButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Alpi Italiane " textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="136.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="136.0" fitWidth="190.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/alpsBackground.jpg" />
                            </image>
@@ -95,10 +95,10 @@
                         </RadialGradient>
                      </textFill>
                      <effect>
-                        <ColorAdjust />
+                        <Glow level="0.5" />
                      </effect>
                   </Button>
-                  <Button fx:id="savanaButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Savana" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="savanaButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Savana 🔒" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -129,7 +129,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button fx:id="tundraButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Tundra" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="tundraButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Tundra 🔒" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -145,12 +145,12 @@
                            <stops>
                               <Stop>
                                  <color>
-                                    <Color red="0.3073684275150299" green="0.722315788269043" blue="0.7684210538864136" />
+                                    <Color red="0.42027291655540466" green="0.5078297853469849" blue="0.5157894492149353" />
                                  </color>
                               </Stop>
                               <Stop offset="1.0">
                                  <color>
-                                    <Color red="0.09555555880069733" green="0.41503703594207764" blue="0.6000000238418579" />
+                                    <Color red="0.11500000208616257" green="0.3794187009334564" blue="0.5" />
                                  </color>
                               </Stop>
                            </stops>
@@ -160,7 +160,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button fx:id="jungleButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Giungla" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="jungleButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Giungla 🔒" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -199,33 +199,6 @@
                </children>
             </GridPane>
          </center>
-         <bottom>
-
-            <Label alignment="CENTER" styleClass="label-titolo" text="Presto disponibili nuovi Habitat!" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-               <textFill>
-                  <RadialGradient centerX="0.45132745894710574" centerY="0.5075757503509521" cycleMethod="REFLECT" radius="0.5">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.1133333370089531" green="0.6000000238418579" blue="0.21066667139530182" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </textFill>
-               <BorderPane.margin>
-                  <Insets bottom="10.0" />
-               </BorderPane.margin>
-            </Label>
-         </bottom>
       </BorderPane>
    </children>
 </StackPane>

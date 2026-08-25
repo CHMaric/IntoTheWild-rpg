@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg127083.core.util;
+package it.unicam.cs.mpgc.rpg127083.ui.util;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
