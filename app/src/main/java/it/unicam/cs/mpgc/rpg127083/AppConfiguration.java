@@ -26,7 +26,7 @@ public class AppConfiguration {
             GameEngine gameEngine = new GameEngine(null, challengeLoader,
                             persistenceService, habitatRegistry);
             SceneManager sceneManager = new SceneManager(primaryStage);
-            NavigationManager navigationManager = new NavigationManager(gameEngine, sceneManager);
+            NavigationManager navigationManager = new NavigationManager(gameEngine, sceneManager, habitatRegistry);
             primaryStage.setTitle("Into The Wild");
             navigationManager.goToStartMenu();
     }

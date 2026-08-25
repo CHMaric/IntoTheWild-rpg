@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane stylesheets="@../style/HabitatSelectionStyle.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="rootPane" stylesheets="@../style/HabitatSelectionStyle.css" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <top>
@@ -26,178 +15,17 @@
                <font>
                   <Font name="System Bold Italic" size="36.0" />
                </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <textFill>
-                  <RadialGradient centerX="0.45132745894710574" centerY="0.5075757503509521" cycleMethod="REFLECT" radius="0.5">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.1133333370089531" green="0.6000000238418579" blue="0.21066667139530182" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </textFill>
                <BorderPane.margin>
-                  <Insets top="10.0" />
+                  <Insets top="20.0" />
                </BorderPane.margin>
             </Label>
          </top>
          <center>
-            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-      
-                  <Button fx:id="alpsButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Alpi Italiane " textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="136.0" fitWidth="190.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../images/alpsBackground.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <textFill>
-                        <RadialGradient centerX="0.5132743447227816" centerY="0.5" radius="0.6376146788990826">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.6842105388641357" green="0.43105262517929077" blue="0.12163742631673813" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006729475100942127">
-                                 <color>
-                                    <Color red="0.6842105388641357" green="0.43105262517929077" blue="0.12163742631673813" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.038947369903326035" green="0.28421053290367126" blue="0.07982455939054489" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </RadialGradient>
-                     </textFill>
-                     <effect>
-                        <Glow level="0.5" />
-                     </effect>
-                  </Button>
-                  <Button fx:id="savanaButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Savana 🔒" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="136.0" fitWidth="190.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../images/savana.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.557894766330719" green="0.5198407769203186" blue="0.10124756395816803" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.27368420362472534" green="0.24471084773540497" blue="0.025341130793094635" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Button>
-                  <Button fx:id="tundraButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Tundra 🔒" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="136.0" fitWidth="190.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../images/tundra.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <textFill>
-                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.42027291655540466" green="0.5078297853469849" blue="0.5157894492149353" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.11500000208616257" green="0.3794187009334564" blue="0.5" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </RadialGradient>
-                     </textFill>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Button>
-                  <Button fx:id="jungleButton" alignment="CENTER" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="200.0" text="Giungla 🔒" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="136.0" fitWidth="190.0" opacity="0.75" pickOnBounds="true">
-                           <image>
-                              <Image url="@../images/jungle.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <textFill>
-                        <RadialGradient centerX="0.5132743447227816" centerY="0.4659090692346746" radius="0.6651376321775104">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.5469265580177307" green="0.5789473652839661" blue="0.0986354798078537" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006729475100942127">
-                                 <color>
-                                    <Color red="0.5469265580177307" green="0.5789473652839661" blue="0.0986354798078537" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.03789473697543144" green="0.28421053290367126" blue="0.12821052968502045" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </RadialGradient>
-                     </textFill>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Button>
-               </children>
-            </GridPane>
+            <TilePane fx:id="habitatContainer" alignment="CENTER" hgap="30.0" vgap="30.0" prefColumns="2" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+               </padding>
+            </TilePane>
          </center>
       </BorderPane>
    </children>

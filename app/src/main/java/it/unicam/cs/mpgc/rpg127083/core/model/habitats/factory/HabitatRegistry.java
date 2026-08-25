@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HabitatRegistry {
@@ -15,5 +16,10 @@ public class HabitatRegistry {
         if (factory == null)
             throw new IllegalArgumentException("No factory registered for label: " + label);
         return factory;
+    }
+    public List<String> getRegisteredHabitats() {
+        return registry.keySet().stream()
+                .sorted()
+                .toList();
     }
 }
