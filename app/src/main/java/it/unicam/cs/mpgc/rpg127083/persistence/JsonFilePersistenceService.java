@@ -5,7 +5,9 @@ import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.SaveManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class JsonFilePersistenceService implements GamePersistenceService {
     private final SaveManager saveManager;
@@ -36,11 +38,12 @@ public class JsonFilePersistenceService implements GamePersistenceService {
         File folder = new File(saveDirectory);
         File[] listOfFiles = folder.listFiles(
                 (dir, name) -> name.toLowerCase().endsWith(".json"));
-        List<String> slots = new ArrayList<>();
-        if (listOfFiles != null)
-            for (File f : listOfFiles)
-                slots.add(f.getName().replace(".json", ""));
-        return slots;
+        return Optional.ofNullable(listOfFiles)
+                .stream()
+                .flatMap(Arrays::stream)
+                .map(File::getName)
+                .map(name -> name.replace(".json", ""))
+                .toList();
     }
 
     @Override
