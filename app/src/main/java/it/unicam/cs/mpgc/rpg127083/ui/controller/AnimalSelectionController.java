@@ -7,12 +7,14 @@ import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.ui.util.FxAsync;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AnimalSelectionController {
@@ -21,12 +23,8 @@ public class AnimalSelectionController {
     private final String selectedHabitat;
     private final HabitatRegistry habitatRegistry;
 
-    @FXML private Button button1;
-    @FXML private Button button2;
-    @FXML private Button button3;
-    @FXML private Button button4;
-
     @FXML private StackPane rootPane;
+    @FXML private GridPane animalContainer;
 
     public AnimalSelectionController(GameEngine gameEngine, NavigationManager navigationManager, String selectedHabitat, HabitatRegistry habitatRegistry) {
         this.gameEngine = gameEngine;
@@ -39,12 +37,34 @@ public class AnimalSelectionController {
     public void initialize() {
         applyDynamicBackground();
         gameEngine.initializeHabitat(selectedHabitat);
+        populateAnimalSelection();
+    }
+    private void populateAnimalSelection(){
         HabitatFactory factory = habitatRegistry.getFactory(selectedHabitat);
-        List<AnimalType> animals = new ArrayList<>(factory.getSupportedAnimalTypes());
-        configureButton(button1, animals.get(0));
-        configureButton(button2, animals.get(1));
-        configureButton(button3, animals.get(2));
-        configureButton(button4, animals.get(3));
+        List<AnimalType> animals = factory.getSupportedAnimalTypes().stream()
+                .sorted()
+                .toList();
+
+        for(int i = 0; i < animals.size(); i++){
+            Button button = createAnimalButton(animals.get(i));
+            GridPane.setColumnIndex(button, i % 2);
+            GridPane.setRowIndex(button, i / 2);
+            animalContainer.getChildren().add(button);
+        }
+    }
+
+    private Button createAnimalButton(AnimalType animalType) {
+        Button button = new Button(formatLabel(animalType.name()));
+        button.getStyleClass().add("animal-card-button");
+        button.setPrefSize(180, 180);
+        button.setContentDisplay(ContentDisplay.TOP);
+        button.setAlignment(Pos.CENTER);
+
+        ImageView iv = createAnimalImageView(animalType.name());
+        if (iv != null) button.setGraphic(iv);
+
+        button.setOnAction(event -> startGame(animalType));
+        return button;
     }
 
     private void applyDynamicBackground() {
@@ -58,15 +78,6 @@ public class AnimalSelectionController {
                             "-fx-background-size: cover;"
             );
         }
-    }
-
-    private void configureButton(Button button, AnimalType animalType) {
-        button.setText(formatLabel(animalType.name()));
-
-        ImageView iv = createAnimalImageView(animalType.name());
-        if (iv != null) button.setGraphic(iv);
-
-        button.setOnAction(event -> startGame(animalType));
     }
 
     private ImageView createAnimalImageView(String animalKey) {
@@ -83,8 +94,8 @@ public class AnimalSelectionController {
     }
 
     private String formatLabel(String name) {
-        String lower = name.toLowerCase();
-        return Character.toUpperCase(lower.charAt(0)) + lower.substring(1).replace("_", " ");
+        String formatted = name.toLowerCase().replace("_", " ");
+        return Character.toUpperCase(formatted.charAt(0)) + formatted.substring(1);
     }
 
     private void startGame(AnimalType animalType) {
@@ -101,9 +112,6 @@ public class AnimalSelectionController {
     }
 
     private void setButtonsDisable(boolean disable) {
-        button1.setDisable(disable);
-        button2.setDisable(disable);
-        button3.setDisable(disable);
-        button4.setDisable(disable);
+        animalContainer.setDisable(disable);
     }
 }

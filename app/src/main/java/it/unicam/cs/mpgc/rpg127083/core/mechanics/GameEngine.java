@@ -37,12 +37,21 @@ public class GameEngine {
     }
 
     public CompletableFuture<Void> startGameAsync(AnimalType animalType){
+        // Return the error through the CompletableFuture for consistent async error handling
         if(this.habitatFactory == null)
-            throw new IllegalStateException("Game can't start if a Habitat has not been chosen");
-        this.currentStage = 0;
+            return CompletableFuture.failedFuture(
+                    new IllegalStateException(
+                            "Game can't start if a Habitat has not been chosen"
+                    )
+            );
         this.player = habitatFactory.createAnimal(animalType);
+        this.currentStage = 0;
+        return loadChallenges(animalType);
+    }
 
-        return challengeLoader.loadChallengesForAnimalAsync(player.getHabitat(), animalType.name())
+    private CompletableFuture<Void> loadChallenges(AnimalType animalType){
+        return challengeLoader
+                .loadChallengesForAnimalAsync(player.getHabitat(), animalType.name())
                 .thenAccept(loadedChallenges -> {
                     if(loadedChallenges == null ||loadedChallenges.isEmpty())
                         throw new IllegalStateException("No challenges found for the selected animal type.");
@@ -88,16 +97,22 @@ public class GameEngine {
 
     public CompletableFuture<Void> loadGameAsync(String slotName) {
         return persistenceService.loadGameAsync(slotName)
-                .thenAccept(this::restoreGame);
+                .thenCompose(this::restoreGameAsync);
     }
 
-    private void restoreGame(SaveData data){
+    private CompletableFuture<Void> restoreGameAsync(SaveData data){
         this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
         AnimalType type = AnimalType.valueOf(data.getAnimalType());
         this.player = habitatFactory.createAnimal(type);
         data.restorePlayerState(this.player);
         this.currentStage = data.getCurrentStage();
-        this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
+
+        return challengeLoader.loadChallengesForAnimalAsync(player.getHabitat(), type.name())
+                .thenAccept(loadedChallenges -> {
+                    if(loadedChallenges == null || loadedChallenges.isEmpty())
+                        throw new IllegalStateException("No challenges found for the selected animal type.");
+                    this.challenges = loadedChallenges;
+                });
     }
 
     public List<String> getAvailableSaveSlots() {
@@ -109,7 +124,6 @@ public class GameEngine {
             persistenceService.deleteSave(slotName);
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
     }

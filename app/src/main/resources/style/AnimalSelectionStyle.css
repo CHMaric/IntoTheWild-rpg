@@ -3,6 +3,9 @@
     -fx-background-position: center center;
     -fx-background-size: cover;
 }
+.animal-container {
+    -fx-alignment: center;
+}
 .animal-card-button {
     -fx-font-family: "System";
     -fx-font-weight: bold;
