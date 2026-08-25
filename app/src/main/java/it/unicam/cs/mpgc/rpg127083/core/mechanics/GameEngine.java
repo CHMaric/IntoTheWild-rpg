@@ -12,6 +12,7 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Getter
 public class GameEngine {
@@ -35,14 +36,18 @@ public class GameEngine {
         this.habitatFactory = this.habitatRegistry.getFactory(habitat);
     }
 
-    public void startGame(AnimalType animalType){
+    public CompletableFuture<Void> startGameAsync(AnimalType animalType){
         if(this.habitatFactory == null)
             throw new IllegalStateException("Game can't start if a Habitat has not been chosen");
         this.currentStage = 0;
         this.player = habitatFactory.createAnimal(animalType);
-        this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), animalType.name());
-        if(challenges.isEmpty())
-            throw new IllegalStateException("No challenges found for the selected animal type.");
+
+        return challengeLoader.loadChallengesForAnimalAsync(player.getHabitat(), animalType.name())
+                .thenAccept(loadedChallenges -> {
+                    if(loadedChallenges == null ||loadedChallenges.isEmpty())
+                        throw new IllegalStateException("No challenges found for the selected animal type.");
+                    this.challenges = loadedChallenges;
+                });
     }
 
     public Challenge getCurrentChallenge() {
@@ -76,30 +81,24 @@ public class GameEngine {
         return GameState.RUNNING;
     }
 
-    public void saveGame(String slotName) {
-        try {
-            SaveData data = new SaveData(this.player, this.currentStage);
-            persistenceService.saveGame(data, slotName);
-        } catch (IOException e) {
-            throw new IllegalStateException("Can't save game", e);
-        }
+    public CompletableFuture<Void> saveGameAsync(String slotName) {
+        SaveData data = new SaveData(this.player, this.currentStage);
+        return persistenceService.saveGameAsync(data, slotName);
     }
 
-    public boolean loadGame(String slotName) {
-        try {
-            SaveData data = this.persistenceService.loadGame(slotName);
-            restoreGame(data);
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
+    public CompletableFuture<Void> loadGameAsync(String slotName) {
+        return persistenceService.loadGameAsync(slotName)
+                .thenAccept(this::restoreGame);
     }
+
     private void restoreGame(SaveData data){
         this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
         AnimalType type = AnimalType.valueOf(data.getAnimalType());
         this.player = habitatFactory.createAnimal(type);
         data.restorePlayerState(this.player);
         this.currentStage = data.getCurrentStage();
+        //since the method is called by loadGameAsync, it's already runningin a thread in background,
+        // so we can call the synchronous version of loadChallengesForAnimal
         this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
     }
 
@@ -112,7 +111,7 @@ public class GameEngine {
             persistenceService.deleteSave(slotName);
             return true;
         } catch (IOException e) {
-            throw new IllegalStateException("Can't delete save game", e);
+            return false;
         }
     }
 }

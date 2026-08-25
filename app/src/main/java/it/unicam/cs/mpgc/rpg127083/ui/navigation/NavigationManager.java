@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg127083.ui;
+package it.unicam.cs.mpgc.rpg127083.ui.navigation;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.ui.controller.*;

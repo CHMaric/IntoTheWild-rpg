@@ -4,51 +4,29 @@ import it.unicam.cs.mpgc.rpg127083.core.mechanics.Choice;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameState;
 import it.unicam.cs.mpgc.rpg127083.core.dto.ChoiceOutcome;
-import it.unicam.cs.mpgc.rpg127083.core.model.animals.Animal;
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.Challenge;
-import it.unicam.cs.mpgc.rpg127083.core.util.StatAnimationHelper;
-import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
+import it.unicam.cs.mpgc.rpg127083.ui.component.PlayerStatsView;
+import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ChallengeController {
     private final GameEngine gameEngine;
     private final NavigationManager navigationManager;
+    private PlayerStatsView statsView;
 
     @FXML
-    private Button actButton;
+    private Button actButton, waitButton, nestButton, nextChallengeButton, backToMenu;
     @FXML
-    private Button waitButton;
+    private Label actLabel, waitLabel, challengeDescriptionLabel, outcomeLabel;
     @FXML
-    private Label challengeDescriptionLabel;
+    private ProgressBar lifeBar, energyBar, staminaBar;
     @FXML
-    private Label outcomeLabel;
-    @FXML
-    private Button nestButton;
-    @FXML
-    private Button nextChallengeButton;
-    @FXML
-    private ProgressBar lifeBar;
-    @FXML
-    private ProgressBar energyBar;
-    @FXML
-    private ProgressBar staminaBar;
-    @FXML
-    private Button backToMenu;
-    @FXML
-    private Label actLabel;
-    @FXML
-    private Label waitLabel;
-    @FXML
-    private Label lifeBarLabel;
-    @FXML
-    private Label energyBarLabel;
-    @FXML
-    private Label staminaBarLabel;
-    @FXML
-    private Label cubsLabel;
-    @FXML
-    private Label cubsCounterLabel;
+    private Label lifeBarLabel, energyBarLabel, staminaBarLabel, cubsLabel, cubsCounterLabel;
 
 
     public ChallengeController(GameEngine gameEngine, NavigationManager navigationManager) {
@@ -58,130 +36,80 @@ public class ChallengeController {
 
     @FXML
     public void initialize(){
+        initializeStatsView();
+        actButton.setOnAction(event -> handleChoice(Challenge::getActChoice, gameEngine::executeActChoice));
+        waitButton.setOnAction(event -> handleChoice(Challenge::getWaitChoice, gameEngine::executeWaitChoice));
+        nestButton.setOnAction(event -> navigationManager.goToNest());
+        nextChallengeButton.setOnAction(event -> updateChallengeUI());
+        backToMenu.setOnAction(event -> navigationManager.goToStartMenu());
         updateChallengeUI();
-        actButton.setOnAction(event -> handleActChoice());
-        waitButton.setOnAction(event -> handleWaitChoice());
-        nestButton.setOnAction(event -> backToNest());
-        nextChallengeButton.setOnAction(event -> nextChallenge());
-        backToMenu.setOnAction(event -> handleEnding());
+    }
+    private void initializeStatsView() {
+        this.statsView = new PlayerStatsView(
+                lifeBar, energyBar, staminaBar,
+                lifeBarLabel, energyBarLabel, staminaBarLabel,
+                cubsLabel, cubsCounterLabel
+        );
     }
 
-    private void handleWaitChoice() {
+    private void handleChoice(Function<Challenge, Choice> choiceExtractor, Supplier<ChoiceOutcome> actionSupplier) {
         Challenge current = gameEngine.getCurrentChallenge();
-        if(current != null){
-            Choice choice = current.getWaitChoice();
-            animateStatsUpdate(choice.getLifeEffect(), choice.getEnergyEffect(),
-                    choice.getStaminaEffect(), choice.getCubsEffect());
+        if (current != null) {
+            statsView.animateEffects(choiceExtractor.apply(current));
         }
-        showChoiceOutcome(gameEngine.executeWaitChoice());
-    }
-
-    private void handleActChoice() {
-        Challenge current = gameEngine.getCurrentChallenge();
-        if(current != null){
-            Choice choice = current.getActChoice();
-            animateStatsUpdate(choice.getLifeEffect(), choice.getEnergyEffect(),
-                    choice.getStaminaEffect(), choice.getCubsEffect());
+        ChoiceOutcome outcome = actionSupplier.get();
+        if (outcome != null) {
+            renderOutcome(outcome);
         }
-        showChoiceOutcome(gameEngine.executeActChoice());
     }
 
-    private void backToNest() {
-        navigationManager.goToNest();}
-
-    private void nextChallenge() {updateChallengeUI();}
-
-    private void handleEnding() {
-        navigationManager.goToStartMenu();}
-
-    private void animateStatsUpdate(double lifeEffect, double energyEffect, double staminaEffect, int cubsEffect) {
-        StatAnimationHelper.animateSingleLabel(lifeBarLabel, lifeEffect);
-        StatAnimationHelper.animateSingleLabel(energyBarLabel, energyEffect);
-        StatAnimationHelper.animateSingleLabel(staminaBarLabel, staminaEffect);
-        StatAnimationHelper.animateSingleLabel(cubsCounterLabel, cubsEffect);
-    }
-
-    private void updateChallengeUI(){
+    private void updateChallengeUI() {
         Challenge current = gameEngine.getCurrentChallenge();
-        if(current != null) {
+        if (current != null) {
             challengeDescriptionLabel.setText(current.getDescription());
             actLabel.setText(current.getActChoice().getDescription());
             waitLabel.setText(current.getWaitChoice().getDescription());
+            setUiMode(UiMode.PLAYING);
+        } else {
+            renderGameEnd("SEI SOPRAVVISSUTO", "La natura non ti ha sopraffatto");
         }
-        else
-            showWin(null);
-        updateStats();
-        resetScreen();
+        statsView.updateStats(gameEngine.getPlayer());
     }
 
-    private void updateStats() {
-        Animal animal = gameEngine.getPlayer();
-        if(animal != null) {
-            lifeBar.setProgress(animal.getLife() / 100.0);
-            energyBar.setProgress(animal.getEnergy() / 100.0);
-            staminaBar.setProgress(animal.getStamina() / 100.0);
-            cubsLabel.setText("Prole: " + animal.getCubs());
+    private void renderOutcome(ChoiceOutcome outcome) {
+        statsView.updateStats(gameEngine.getPlayer());
+        GameState state = gameEngine.checkGameState();
+
+        if (state == GameState.GAME_OVER) {
+            renderGameEnd("SEI MORTO", outcome.description() + "\nLa natura ha fatto il suo corso.");
+        } else if (state == GameState.VICTORY) {
+            renderGameEnd("SEI SOPRAVVISSUTO", outcome.description() + "\nLa natura non ti ha sopraffatto.");
+        } else {
+            outcomeLabel.setText(outcome.description());
+            setUiMode(UiMode.OUTCOME_PENDING);
         }
     }
 
-
-    private void resetScreen() {
-        outcomeLabel.setVisible(false);
-        outcomeLabel.setManaged(false);
-        nestButton.setVisible(false);
-        nestButton.setManaged(false);
-        nextChallengeButton.setVisible(false);
-        nextChallengeButton.setManaged(false);
-        actButton.setDisable(false);
-        waitButton.setDisable(false);
-        backToMenu.setVisible(false);
+    private void renderGameEnd(String title, String message) {
+        challengeDescriptionLabel.setText(title);
+        outcomeLabel.setText(message);
+        setUiMode(UiMode.GAME_OVER);
     }
 
-    private void showChoiceOutcome(ChoiceOutcome outcome){
-        updateStats();
-        if(gameEngine.checkGameState()== GameState.GAME_OVER){
-            showGameOver(outcome.description());
-            return;
-        }
-        if(gameEngine.checkGameState()== GameState.VICTORY){
-            showWin(outcome.description());
-            return;
-        }
-        outcomeLabel.setText(outcome.description());
-        showButtons();
+
+    private enum UiMode { PLAYING, OUTCOME_PENDING, GAME_OVER }
+
+    private void setUiMode(UiMode mode) {
+        actButton.setDisable(mode != UiMode.PLAYING);
+        waitButton.setDisable(mode != UiMode.PLAYING);
+        setComponentVisibility(outcomeLabel, mode != UiMode.PLAYING);
+        setComponentVisibility(nestButton, mode == UiMode.OUTCOME_PENDING);
+        setComponentVisibility(nextChallengeButton, mode == UiMode.OUTCOME_PENDING);
+        setComponentVisibility(backToMenu, mode == UiMode.GAME_OVER);
     }
 
-    private void showButtons(){
-        outcomeLabel.setVisible(true);
-        outcomeLabel.setManaged(true);
-        nestButton.setVisible(true);
-        nestButton.setManaged(true);
-        nextChallengeButton.setVisible(true);
-        nextChallengeButton.setManaged(true);
-        actButton.setDisable(true);
-        waitButton.setDisable(true);
-    }
-
-    private void showGameOver(String s){
-        challengeDescriptionLabel.setText("SEI MORTO");
-        outcomeLabel.setText(s + "\nLa natura ha fatto il suo corso.");
-        freezeButtons();
-    }
-
-    private void freezeButtons() {
-        outcomeLabel.setVisible(true);
-        outcomeLabel.setManaged(true);
-        actButton.setDisable(true);
-        waitButton.setDisable(true);
-        nestButton.setVisible(false);
-        nextChallengeButton.setVisible(false);
-        backToMenu.setVisible(true);
-    }
-
-    private void showWin(String s){
-        challengeDescriptionLabel.setText("SEI SOPRAVVISSUTO");
-        String detail = s != null ? s + "\n" : "";
-        outcomeLabel.setText(detail + "La natura non ti ha sopraffatto");;
-        freezeButtons();
+    private void setComponentVisibility(Node node, boolean visible) {
+        node.setVisible(visible);
+        node.setManaged(visible);
     }
 }

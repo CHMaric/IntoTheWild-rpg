@@ -1,7 +1,8 @@
 package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
-import it.unicam.cs.mpgc.rpg127083.ui.NavigationManager;
+import it.unicam.cs.mpgc.rpg127083.ui.util.FxAsync;
+import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -53,10 +54,8 @@ public class SavesController {
 
     private void handleDelete() {
         String slotName = savesComboBox.getValue();
-        if (slotName == null) {
-            showAlert(Alert.AlertType.ERROR, "Salvataggio non selezionato");
+        if (slotName == null)
             return;
-        }
         boolean success = gameEngine.deleteSavedGame(slotName);
         if(success) {
             showAlert(Alert.AlertType.INFORMATION, "Salvataggio eliminato: " + slotName);
@@ -69,15 +68,13 @@ public class SavesController {
 
     private void handleLoad() {
         String slotName = savesComboBox.getValue();
-        if(slotName == null) {
-            showAlert(Alert.AlertType.INFORMATION, "Seleziona un salvataggio");
+        if(slotName == null || slotName.isBlank())
             return;
-        }
-        boolean success = gameEngine.loadGame(slotName);
-        if (success) {
-            navigationManager.goToNest();
-        } else
-            showAlert(Alert.AlertType.ERROR, "Impossibile caricare il file: " + slotName);
+        FxAsync.execute(
+                gameEngine.loadGameAsync(slotName),
+                navigationManager::goToNest,
+                ex -> FxAsync.showErrorAlert("Errore Caricamento", ex)
+        );
     }
 
     private void showAlert(Alert.AlertType type, String message) {

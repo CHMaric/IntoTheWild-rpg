@@ -16,7 +16,7 @@
     -fx-background-color: rgba(255, 255, 255, 0.55);
     -fx-background-radius: 20px;
     -fx-border-radius: 10px;
-    -fx-border-color: trasparent;
+    -fx-border-color: transparent;
     -fx-border-width: 0px;
     -fx-padding: 8px 24px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 8, 0, 0, 3);

@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class JsonChallengeLoader implements ChallengeLoader {
     private final Gson gson;
