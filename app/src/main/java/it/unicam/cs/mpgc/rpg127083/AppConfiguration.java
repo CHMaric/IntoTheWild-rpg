@@ -11,12 +11,11 @@ import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.SaveManager;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.SceneManager;
-import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class AppConfiguration  extends Application {
+public class AppConfiguration {
 
-    public void start(Stage primaryStage) throws Exception {
+    public void configureAndStart(Stage primaryStage) {
 
             ChallengeLoader challengeLoader = new JsonChallengeLoader();
             SaveManager saveManager = new JsonSaveManager();
@@ -26,7 +25,7 @@ public class AppConfiguration  extends Application {
             GameEngine gameEngine = new GameEngine(null, challengeLoader,
                             persistenceService, habitatRegistry);
             SceneManager sceneManager = new SceneManager(primaryStage);
-            NavigationManager navigationManager = new NavigationManager(gameEngine, sceneManager);
+            NavigationManager navigationManager = new NavigationManager(gameEngine, sceneManager, habitatRegistry);
             primaryStage.setTitle("Into The Wild");
             navigationManager.goToStartMenu();
     }

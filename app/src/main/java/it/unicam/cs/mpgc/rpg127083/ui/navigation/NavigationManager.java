@@ -1,15 +1,18 @@
 package it.unicam.cs.mpgc.rpg127083.ui.navigation;
 
 import it.unicam.cs.mpgc.rpg127083.core.mechanics.GameEngine;
+import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.ui.controller.*;
 
 public class NavigationManager {
     private final GameEngine gameEngine;
     private final SceneManager sceneManager;
+    private HabitatRegistry habitatRegistry;
 
-    public NavigationManager(GameEngine gameEngine, SceneManager sceneManager) {
+    public NavigationManager(GameEngine gameEngine, SceneManager sceneManager, HabitatRegistry habitatRegistry) {
         this.gameEngine = gameEngine;
         this.sceneManager = sceneManager;
+        this.habitatRegistry = habitatRegistry;
     }
     public void goToStartMenu() {
         StartMenuController controller = new StartMenuController(gameEngine, this);
@@ -17,12 +20,12 @@ public class NavigationManager {
     }
 
     public void goToHabitatSelection() {
-        HabitatSelectionController controller = new HabitatSelectionController(gameEngine, this);
+        HabitatSelectionController controller = new HabitatSelectionController(habitatRegistry, this);
         sceneManager.switchScene("/view/HabitatSelectionView.fxml", controller);
     }
 
     public void goToAnimalSelection(String selectedHabitat) {
-        AnimalSelectionController controller = new AnimalSelectionController(gameEngine, this, selectedHabitat);
+        AnimalSelectionController controller = new AnimalSelectionController(gameEngine, this, selectedHabitat, habitatRegistry);
         sceneManager.switchScene("/view/AnimalSelectionView.fxml", controller);
     }
 

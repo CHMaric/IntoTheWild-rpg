@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface ChallengeLoader {
     List<Challenge> loadChallengesForAnimal(Habitat habitat, String animalType);
+
     default CompletableFuture<List<Challenge>> loadChallengesForAnimalAsync(Habitat habitat, String animalType){
         return CompletableFuture.supplyAsync(() -> loadChallengesForAnimal(habitat, animalType));
     }

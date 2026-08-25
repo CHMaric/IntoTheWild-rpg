@@ -28,7 +28,6 @@ public class SaveData {
         this.currentStage = currentStage;
     }
     public void restorePlayerState(Animal player) {
-        player.setId(this.id);
         player.setLife(this.life);
         player.setEnergy(this.energy);
         player.setStamina(this.stamina);

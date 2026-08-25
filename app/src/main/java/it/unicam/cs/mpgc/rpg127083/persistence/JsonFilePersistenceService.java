@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class JsonFilePersistenceService implements GamePersistenceService {
     private final SaveManager saveManager;
@@ -37,11 +36,12 @@ public class JsonFilePersistenceService implements GamePersistenceService {
         File folder = new File(saveDirectory);
         File[] listOfFiles = folder.listFiles(
                 (dir, name) -> name.toLowerCase().endsWith(".json"));
-        return Optional.ofNullable(listOfFiles)
-                .stream()
-                .flatMap(Arrays::stream)
+        if(listOfFiles == null)
+            return List.of();
+
+        return Arrays.stream(listOfFiles)
                 .map(File::getName)
-                .map(name -> name.replace(".json", ""))
+                .map(name -> name.substring(0, name.length() - ".json".length()))
                 .toList();
     }
 

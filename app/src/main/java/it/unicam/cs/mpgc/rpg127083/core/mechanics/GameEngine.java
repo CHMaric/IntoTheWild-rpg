@@ -37,12 +37,21 @@ public class GameEngine {
     }
 
     public CompletableFuture<Void> startGameAsync(AnimalType animalType){
+        // Return the error through the CompletableFuture for consistent async error handling
         if(this.habitatFactory == null)
-            throw new IllegalStateException("Game can't start if a Habitat has not been chosen");
-        this.currentStage = 0;
+            return CompletableFuture.failedFuture(
+                    new IllegalStateException(
+                            "Game can't start if a Habitat has not been chosen"
+                    )
+            );
         this.player = habitatFactory.createAnimal(animalType);
+        this.currentStage = 0;
+        return loadChallenges(animalType);
+    }
 
-        return challengeLoader.loadChallengesForAnimalAsync(player.getHabitat(), animalType.name())
+    private CompletableFuture<Void> loadChallenges(AnimalType animalType){
+        return challengeLoader
+                .loadChallengesForAnimalAsync(player.getHabitat(), animalType.name())
                 .thenAccept(loadedChallenges -> {
                     if(loadedChallenges == null ||loadedChallenges.isEmpty())
                         throw new IllegalStateException("No challenges found for the selected animal type.");
@@ -75,7 +84,7 @@ public class GameEngine {
     }
 
     public GameState checkGameState(){
-        if(player == null) return GameState.RUNNING;
+        if(player == null || challenges == null) return GameState.RUNNING;
         if(player.getLife() <= 0) return GameState.GAME_OVER;
         if(currentStage >= challenges.size()) return GameState.VICTORY;
         return GameState.RUNNING;
@@ -88,18 +97,22 @@ public class GameEngine {
 
     public CompletableFuture<Void> loadGameAsync(String slotName) {
         return persistenceService.loadGameAsync(slotName)
-                .thenAccept(this::restoreGame);
+                .thenCompose(this::restoreGameAsync);
     }
 
-    private void restoreGame(SaveData data){
+    private CompletableFuture<Void> restoreGameAsync(SaveData data){
         this.habitatFactory = habitatRegistry.getFactory(data.getHabitat());
         AnimalType type = AnimalType.valueOf(data.getAnimalType());
         this.player = habitatFactory.createAnimal(type);
         data.restorePlayerState(this.player);
         this.currentStage = data.getCurrentStage();
-        //since the method is called by loadGameAsync, it's already runningin a thread in background,
-        // so we can call the synchronous version of loadChallengesForAnimal
-        this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
+
+        return challengeLoader.loadChallengesForAnimalAsync(player.getHabitat(), type.name())
+                .thenAccept(loadedChallenges -> {
+                    if(loadedChallenges == null || loadedChallenges.isEmpty())
+                        throw new IllegalStateException("No challenges found for the selected animal type.");
+                    this.challenges = loadedChallenges;
+                });
     }
 
     public List<String> getAvailableSaveSlots() {
