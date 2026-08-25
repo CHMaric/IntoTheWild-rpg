@@ -6,11 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public abstract class Animal {
-    private long id;
-    private AnimalType type;
+    private final long id;
+    private final AnimalType type;
     private Habitat habitat;
     private double life;
     private double energy;

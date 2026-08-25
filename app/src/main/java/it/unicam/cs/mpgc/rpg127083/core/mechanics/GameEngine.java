@@ -98,7 +98,7 @@ public class GameEngine {
         data.restorePlayerState(this.player);
         this.currentStage = data.getCurrentStage();
         //since the method is called by loadGameAsync, it's already runningin a thread in background,
-        // so we can call the synchronous version of loadChallengesForAnimal
+        // so the synchronous version of loadChallengesForAnimal can be called
         this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
     }
 

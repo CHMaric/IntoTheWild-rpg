@@ -12,11 +12,6 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) {
-        try{
-            AppConfiguration appConfiguration = new AppConfiguration();
-            appConfiguration.start(primaryStage);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        new AppConfiguration().configureAndStart(primaryStage);
     }
 }

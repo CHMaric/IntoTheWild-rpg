@@ -14,9 +14,9 @@ import it.unicam.cs.mpgc.rpg127083.ui.navigation.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class AppConfiguration  extends Application {
+public class AppConfiguration {
 
-    public void start(Stage primaryStage) throws Exception {
+    public void configureAndStart(Stage primaryStage) {
 
             ChallengeLoader challengeLoader = new JsonChallengeLoader();
             SaveManager saveManager = new JsonSaveManager();

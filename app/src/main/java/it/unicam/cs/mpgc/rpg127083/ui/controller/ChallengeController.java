@@ -64,40 +64,50 @@ public class ChallengeController {
     }
 
     private void updateChallengeUI() {
+        statsView.updateStats(gameEngine.getPlayer());
+        if (processTerminalState(null)) {
+            return;
+        }
         Challenge current = gameEngine.getCurrentChallenge();
         if (current != null) {
             challengeDescriptionLabel.setText(current.getDescription());
             actLabel.setText(current.getActChoice().getDescription());
             waitLabel.setText(current.getWaitChoice().getDescription());
             setUiMode(UiMode.PLAYING);
-        } else {
-            renderGameEnd("SEI SOPRAVVISSUTO", "La natura non ti ha sopraffatto");
         }
-        statsView.updateStats(gameEngine.getPlayer());
     }
 
     private void renderOutcome(ChoiceOutcome outcome) {
         statsView.updateStats(gameEngine.getPlayer());
         GameState state = gameEngine.checkGameState();
+        if (processTerminalState(outcome.description()))
+            return;
+        outcomeLabel.setText(outcome.description());
+        setUiMode(UiMode.OUTCOME_PENDING);
+    }
 
+    private boolean processTerminalState(String outcomeText) {
+        GameState state = gameEngine.checkGameState();
+        String prefix = outcomeText != null ? outcomeText + "\n" : "";
         if (state == GameState.GAME_OVER) {
-            renderGameEnd("SEI MORTO", outcome.description() + "\nLa natura ha fatto il suo corso.");
-        } else if (state == GameState.VICTORY) {
-            renderGameEnd("SEI SOPRAVVISSUTO", outcome.description() + "\nLa natura non ti ha sopraffatto.");
-        } else {
-            outcomeLabel.setText(outcome.description());
-            setUiMode(UiMode.OUTCOME_PENDING);
+            renderGameEnd("SEI MORTO", prefix + "La natura ha fatto il suo corso.");
+            return true;
         }
+        if (state == GameState.VICTORY) {
+            renderGameEnd("SEI SOPRAVVISSUTO", prefix + "La natura non ti ha sopraffatto.");
+            return true;
+        }
+        return false;
     }
 
     private void renderGameEnd(String title, String message) {
         challengeDescriptionLabel.setText(title);
         outcomeLabel.setText(message);
-        setUiMode(UiMode.GAME_OVER);
+        setUiMode(UiMode.FINISHED);
     }
 
 
-    private enum UiMode { PLAYING, OUTCOME_PENDING, GAME_OVER }
+    private enum UiMode { PLAYING, OUTCOME_PENDING, FINISHED }
 
     private void setUiMode(UiMode mode) {
         actButton.setDisable(mode != UiMode.PLAYING);
@@ -105,7 +115,7 @@ public class ChallengeController {
         setComponentVisibility(outcomeLabel, mode != UiMode.PLAYING);
         setComponentVisibility(nestButton, mode == UiMode.OUTCOME_PENDING);
         setComponentVisibility(nextChallengeButton, mode == UiMode.OUTCOME_PENDING);
-        setComponentVisibility(backToMenu, mode == UiMode.GAME_OVER);
+        setComponentVisibility(backToMenu, mode == UiMode.FINISHED);
     }
 
     private void setComponentVisibility(Node node, boolean visible) {
