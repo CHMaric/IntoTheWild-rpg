@@ -6,15 +6,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
 public abstract class Animal {
     private final long id;
     private final AnimalType type;
-    private Habitat habitat;
+    private final Habitat habitat;
     private double life;
     private double energy;
     private double stamina;
     private int cubs;
+
+    public Animal(long id, AnimalType type, Habitat habitat, double life, double energy, double stamina, int cubs) {
+        this.id = id;
+        this.type = type;
+        this.habitat = habitat;
+        this.life = life;
+        this.energy = energy;
+        this.stamina = stamina;
+        this.cubs = cubs;
+    }
 
     public void setLife(double life) {this.life = Math.clamp(life, 0, 100);}
     public void setEnergy(double energy) {this.energy = Math.clamp(energy, 0, 100);}
