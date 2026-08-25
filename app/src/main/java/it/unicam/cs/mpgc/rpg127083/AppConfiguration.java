@@ -11,7 +11,6 @@ import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.GamePersistenceService
 import it.unicam.cs.mpgc.rpg127083.persistence.interfaces.SaveManager;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.SceneManager;
-import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class AppConfiguration {

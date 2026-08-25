@@ -42,6 +42,6 @@ public class ItalianAlpsFactory implements HabitatFactory{
 
     @Override
     public Set<AnimalType> getSupportedAnimalTypes() {
-        return animalRegistry.keySet();
+        return Set.copyOf(animalRegistry.keySet());
     }
 }

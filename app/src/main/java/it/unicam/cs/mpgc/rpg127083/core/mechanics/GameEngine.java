@@ -75,7 +75,7 @@ public class GameEngine {
     }
 
     public GameState checkGameState(){
-        if(player == null) return GameState.RUNNING;
+        if(player == null || challenges == null) return GameState.RUNNING;
         if(player.getLife() <= 0) return GameState.GAME_OVER;
         if(currentStage >= challenges.size()) return GameState.VICTORY;
         return GameState.RUNNING;
@@ -97,8 +97,6 @@ public class GameEngine {
         this.player = habitatFactory.createAnimal(type);
         data.restorePlayerState(this.player);
         this.currentStage = data.getCurrentStage();
-        //since the method is called by loadGameAsync, it's already runningin a thread in background,
-        // so the synchronous version of loadChallengesForAnimal can be called
         this.challenges = challengeLoader.loadChallengesForAnimal(player.getHabitat(), type.name());
     }
 
@@ -111,6 +109,7 @@ public class GameEngine {
             persistenceService.deleteSave(slotName);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }

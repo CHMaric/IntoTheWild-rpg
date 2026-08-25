@@ -25,7 +25,7 @@ public class NavigationManager {
     }
 
     public void goToAnimalSelection(String selectedHabitat) {
-        AnimalSelectionController controller = new AnimalSelectionController(gameEngine, this, selectedHabitat);
+        AnimalSelectionController controller = new AnimalSelectionController(gameEngine, this, selectedHabitat, habitatRegistry);
         sceneManager.switchScene("/view/AnimalSelectionView.fxml", controller);
     }
 
