@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg127083.ui.controller;
 
 import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
+import it.unicam.cs.mpgc.rpg127083.ui.util.LanguageTranslation;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -32,6 +33,8 @@ public class HabitatSelectionController {
                 .map(this::createHabitatButton)
                 .forEach(habitatContainer.getChildren()::add);
     }
+    // to translate button's name in Italian add keyset of english_word and traslation_to_italian
+    // in LanguageTranslation's map
     private Button createHabitatButton(String habitatKey) {
         Button button = new Button(formatLabel(habitatKey));
         button.setPrefSize(200, 180);
@@ -51,6 +54,8 @@ public class HabitatSelectionController {
      * Create the ImageView for the habitat following a chosen naming convention:
      * /images/{habitatKey in all caps}.jpg
      * es. ITALIAN_ALPS -> /images/italian_alps.jpg
+     * If a translated version of the name in Italian is desired, add a keyset of
+     * english word and its translation in LanguageTranslation
      */
     private ImageView createHabitatImageView(String habitatKey) {
         String imagePath = "/images/" + habitatKey.toLowerCase() + "_background.jpg";
@@ -66,6 +71,7 @@ public class HabitatSelectionController {
     }
 
     private String formatLabel(String rawKey) {
-        return rawKey.replace("_", " ");
+        String s = rawKey.replace("_", " ").toLowerCase();
+        return LanguageTranslation.translateToItalian(s);
     }
 }
