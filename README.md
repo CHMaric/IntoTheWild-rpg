@@ -54,5 +54,10 @@ Nel progetto il cambio di schermata è gestito tramite la classe SceneManager, c
 
 ---
 ## Uso di strumenti di AI
-Durante lo sviluppo sono stati utilizzati strumenti di AI come supporto allo studio e per la generazione di codice ripetitivo come getter, setter e costruttori.
-Tutto il codice è stato tuttavia revisionato, modificato e corretto personalmente.
+Durante lo sviluppo sono stati utilizzati strumenti di intelligenza artificiale come supporto allo studio, per la genazione di codice ripetitivo e per individuare e correggere bug, in particolare per la gestione di alcuni aspetti grafici, come ad esempio le animazioni. In particolare:
+- ChatGpt e Gemini sono stati utilizzati per la generazione di alcuni dei file di stile, in particolare per le schermate riguardanti le schermate di selezione degli Habitat e degli Animali.
+- ChatGpt ha fornito supporto alla comprensione dell'uso della logica asincrona utilizzata e individuato bug durante lo sviluppo della stessa nel codice.
+- Copilot è stato utilizzato per l'autocompletamento di metodi semplici o ripetitivi (getter, setter, costruttori).
+
+Tutto il feedback ricevuto è stato tuttavia compreso, e il codice suggerito revisionato, modificato e corretto personalmente prima di essere introdotto nel progetto.
+
