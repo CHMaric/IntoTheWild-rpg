@@ -6,6 +6,7 @@ import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatFactory;
 import it.unicam.cs.mpgc.rpg127083.core.model.habitats.factory.HabitatRegistry;
 import it.unicam.cs.mpgc.rpg127083.ui.util.FxAsync;
 import it.unicam.cs.mpgc.rpg127083.ui.navigation.NavigationManager;
+import it.unicam.cs.mpgc.rpg127083.ui.util.LanguageTranslation;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -53,6 +54,8 @@ public class AnimalSelectionController {
         }
     }
 
+    // to translate button's name in Italian add keyset of english_word and translation_to_italian
+    // in LanguageTranslation's map
     private Button createAnimalButton(AnimalType animalType) {
         Button button = new Button(formatLabel(animalType.name()));
         button.getStyleClass().add("animal-card-button");
@@ -95,7 +98,7 @@ public class AnimalSelectionController {
 
     private String formatLabel(String name) {
         String formatted = name.toLowerCase().replace("_", " ");
-        return Character.toUpperCase(formatted.charAt(0)) + formatted.substring(1);
+        return LanguageTranslation.translateToItalian(formatted);
     }
 
     private void startGame(AnimalType animalType) {
