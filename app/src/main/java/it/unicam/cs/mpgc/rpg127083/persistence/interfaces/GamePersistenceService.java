@@ -16,7 +16,7 @@ public interface GamePersistenceService {
             try {
                 saveGame(saveData, slotName);
             } catch (IOException e) {
-                throw new RuntimeException("Errore durante il salvataggio asincrono", e);
+                throw new RuntimeException("Error during async save", e);
             }
         });
     }
@@ -26,7 +26,7 @@ public interface GamePersistenceService {
             try {
                 return loadGame(slotName);
             } catch (IOException e) {
-                throw new RuntimeException("Errore durante il caricamento asincrono", e);
+                throw new RuntimeException("Error during async load", e);
             }
         });
     }
