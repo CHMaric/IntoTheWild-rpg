@@ -14,6 +14,8 @@ public final class LanguageTranslation {
     private LanguageTranslation(){}
 
     public static String translateToItalian(String englishTerm) {
+        if(!ITALIAN_TRANSLATIONS.containsKey(englishTerm))
+            return englishTerm;
         return ITALIAN_TRANSLATIONS.getOrDefault(englishTerm.toLowerCase(), englishTerm);
     }
 
